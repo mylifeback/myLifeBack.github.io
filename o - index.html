@@ -160,12 +160,12 @@
 
       // materials
 
-      const lesionMaterial = new THREE.MeshPhongMaterial({
+      const lesionMaterial = new THREE.MeshLambertMaterial({
         wireframe: false,
         side: THREE.DoubleSide,
         color: 0x00ffff,
-        transparent: true,
-        opacity: 0.4,
+        // transparent: true,
+        // opacity: 0.4,
       });
 
       const skinMaterial = new THREE.MeshPhongMaterial({
@@ -176,7 +176,7 @@
         opacity: 0.4,
       });
 
-      const boneMaterial = new THREE.MeshPhongMaterial({
+      const boneMaterial = new THREE.MeshStandardMaterial({
         wireframe: false,
         side: THREE.DoubleSide,
         color: 0x0000ff,
@@ -192,7 +192,6 @@
         scene.add(mesh);
         const lesion = {
           visible: true,
-          opacity: 1,
         };
 
         gui
@@ -200,14 +199,6 @@
           .name("Lesion Visible")
           .onChange(function () {
             mesh.visible = lesion.visible;
-            renderer.render(scene, camera);
-          });
-
-        gui
-          .add(lesion, "opacity", 0, 1, 0.1)
-          .name("opacity - lesion")
-          .onChange(function () {
-            lesionMaterial.opacity = lesion.opacity;
             renderer.render(scene, camera);
           });
       });
@@ -218,22 +209,13 @@
         scene.add(mesh);
         const skin = {
           visible: true,
-          opacity: 0.2,
         };
 
-        // gui
-        //   .add(skin, "visible")
-        //   .name("Skin Visible")
-        //   .onChange(function () {
-        //     mesh.visible = skin.visible;
-        //     renderer.render(scene, camera);
-        //   });
-
         gui
-          .add(skin, "opacity", 0, 1, 0.1)
-          .name("opacity - skin")
+          .add(skin, "visible")
+          .name("Skin Visible")
           .onChange(function () {
-            skinMaterial.opacity = skin.opacity;
+            mesh.visible = skin.visible;
             renderer.render(scene, camera);
           });
       });
@@ -244,22 +226,13 @@
         scene.add(mesh);
         const bone = {
           visible: true,
-          opacity: 0.4,
         };
 
-        // gui
-        //   .add(bone, "visible")
-        //   .name("Bone Visible")
-        //   .onChange(function () {
-        //     mesh.visible = bone.visible;
-        //     renderer.render(scene, camera);
-        //   });
-
         gui
-          .add(bone, "opacity", 0, 1, 0.1)
-          .name("opacity - bone")
+          .add(bone, "visible")
+          .name("Bone Visible")
           .onChange(function () {
-            boneMaterial.opacity = bone.opacity;
+            mesh.visible = bone.visible;
             renderer.render(scene, camera);
           });
       });
