@@ -1,0 +1,41 @@
+if ("DeviceOrientationEvent" in window) {
+  window.addEventListener("deviceorientation", handler, false);
+  d.textContent = "event registered.";
+} else {
+  a.textContent = "API not supported ...";
+}
+
+function handler(event) {
+  console.log("handler is action");
+  let LR = event.gamma;
+  let FB = event.beta;
+  let dir = event.alpha;
+
+  a.textContent = LR;
+  b.textContent = FB;
+  c.textContent = dir;
+}
+
+// // const sensor = new Accelerometer();
+// window.addEventListener("devicemotion", handler);
+// // sensor.start();
+
+// function handler(acceleration, targetID) {
+//   // var info, exz = "[X, Y, Z]";
+//   var x = acceleration.x;
+//   a.textContent = x;
+// }
+
+navigator.permissions.query({ name: "geolocation" }).then((result) => {
+  if (result.state === "denied") {
+    console.log("permission denied");
+    return;
+  } else {
+    console.log("ok");
+    navigator.geolocation.getCurrentPosition(res);
+  }
+});
+
+function res(position) {
+  console.log(position.coords.latitude);
+}
