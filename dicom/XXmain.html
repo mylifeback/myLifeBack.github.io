@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>view 3D dicom</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, minimum-scale=1.0"
+    />
+    <link type="text/css" rel="stylesheet" href="./src/main.css" />
+    <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
+  </head>
+
+  <body>
+    <div id="info">
+      skin / bone / lesion
+    </div>
+    <div id="inset"></div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./src/three.js",
+          "three/addons/jsm/libs/": "./src/",
+          "./libs/": "./src/"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import * as THREE from "./src/three.js";
+
+      import Stats from "./src/stats.module.js";
+
+      import { GUI } from "./src/lil-gui.module.min.js";
+      import { TrackballControls } from "./src/TrackballControls.js";
+      import { VTKLoader } from "./src/VTKLoader.js";
+
+      let stats, camera, controls, scene, renderer;
+
+      init();
+
+      function init() {
+        camera = new THREE.PerspectiveCamera(
+          60,
+          window.innerWidth / window.innerHeight,
+          0.01,
+          1e10
+        );
+        camera.position.z = 300;
+
+        scene = new THREE.Scene();
+
+        scene.add(camera);
+
+        // light
+
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 3);
+        scene.add(hemiLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        dirLight.position.set(200, 200, 200);
+        scene.add(dirLight);
+
+        /* lesion ----------- */
+        const vtkmaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0xff0000,
+        });
+
+        const vtkloader = new VTKLoader();
+        vtkloader.load("./file/lesion.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+
+          const mesh = new THREE.Mesh(geometry, vtkmaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Model Visible")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              renderer.render(scene, camera);
+            });
+
+        /* skin ----------- */
+        const skinmaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0x00ff00,
+        });
+
+        const skinloader = new VTKLoader();
+        skinloader.load("./file/skin.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+
+          const mesh = new THREE.Mesh(geometry, skinmaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Skin Visible")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              renderer.render(scene, camera);
+            });
+        });
+        // renderer
+
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setAnimationLoop(animate);
+        document.body.appendChild(renderer.domElement);
+
+        controls = new TrackballControls(camera, renderer.domElement);
+        controls.minDistance = 100;
+        controls.maxDistance = 500;
+        controls.rotateSpeed = 5.0;
+        controls.zoomSpeed = 5;
+        controls.panSpeed = 2;
+
+        stats = new Stats();
+        document.body.appendChild(stats.dom);
+
+        const gui = new GUI();
+
+        window.addEventListener("resize", onWindowResize);
+      }
+,
+
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        controls.handleResize();
+      }
+,
+
+      function animate() {
+        controls.update();
+
+        renderer.render(scene, camera);
+
+        stats.update();
+      }
+    </script>
+  </body>
+</html>
