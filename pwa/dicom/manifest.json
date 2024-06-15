@@ -1,6 +1,7 @@
 {
         "name":"PWA dicom",
         "short_name":"dicom",
+        "id":"dicom",
         "start_url":"./index.html",
         "display":"standalone",
         "background_color":"#5900b3",

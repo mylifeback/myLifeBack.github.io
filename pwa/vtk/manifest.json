@@ -1,6 +1,7 @@
 {
         "name":"pwa vtk",
         "short_name":"vtk",
+        "id":"vtk",
         "start_url":"./index.html",
         "display":"standalone",
         "background_color":"#5900b3",
