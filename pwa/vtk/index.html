@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>three.js webgl - loaders - NRRD loader</title>
+    <!-- Responsive -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"
+      content="width=device-width,
+                                initial-scale=1"
     />
-    <link type="text/css" rel="stylesheet" href="./src/main.css" />
-    <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Title -->
+    <title>PWA Tutorial</title>
+    <link rel="icon" type="images/x-icon" href="src/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="src/main.css" />
+    <script type="module" src="src/main.js"></script>
+
+    <!-- Meta Tags required for
+        Progressive Web App -->
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
+    <meta name="theme-color" content="black" />
+    <!-- Manifest File link -->
+   
+    <link rel="manifest" href="manifest.json" />
+   
+    <!-- error with permission policy header: origin trial controlled feature not enabled: 'interest-cohort' -->
+    <meta
+      http-equiv="Permissions-Policy"
+      content="interest-cohort=(), user-id=()"
+    />
   </head>
 
   <body>
+    <script>
+      window.addEventListener("load", () => {
+        registerSW();
+      });
+
+      // Register the Service Worker
+      async function registerSW() {
+        if ("serviceWorker" in navigator) {
+          try {
+            await navigator.serviceWorker.register("serviceworker.js");
+          } catch (e) {
+            console.log("SW registration failed");
+          }
+        }
+      }
+    </script>
     <div id="info">
       <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a>
 
