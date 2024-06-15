@@ -20,7 +20,14 @@ var staticCacheName = "pwa";
 // ];
 
 const assets = [
-  "manifest.json"
+  "manifest.json",
+  "serviceworker.js",
+  "index.html",
+  "src/main.css",
+  "src/main.js",
+  "src/favicon.ico",
+  "src/icon-192x192.png",
+  "src/icon-512x512.png"
 ];
 
 self.addEventListener("install", function(e) {
