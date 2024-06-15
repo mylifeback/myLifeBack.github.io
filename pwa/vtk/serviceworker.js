@@ -20,8 +20,7 @@ var staticCacheName = "pwa";
 
 const assets = [
 
-  "src/three.js",
-  "src/TrackballControls.js",
+
   "src/VTKLoader.js"
 ];
 
