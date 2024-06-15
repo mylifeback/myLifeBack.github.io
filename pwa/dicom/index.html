@@ -20,9 +20,9 @@
     <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
     <meta name="theme-color" content="black" />
     <!-- Manifest File link -->
-   
+
     <link rel="manifest" href="manifest.json" />
-   
+
     <!-- error with permission policy header: origin trial controlled feature not enabled: 'interest-cohort' -->
     <meta
       http-equiv="Permissions-Policy"
@@ -31,13 +31,24 @@
   </head>
 
   <body>
+    <div id="info">- load dicom.nrrd file in /file</div>
 
-    <div id="info">
-      - load dicom.nrrd file in /file
-    </div>
+    <script>
+      window.addEventListener("load", () => {
+        registerSW();
+      });
 
-
-
+      // Register the Service Worker
+      async function registerSW() {
+        if ("serviceWorker" in navigator) {
+          try {
+            await navigator.serviceWorker.register("serviceworker.js");
+          } catch (e) {
+            console.log("SW registration failed");
+          }
+        }
+      }
+    </script>
 
     <script type="module">
       import * as THREE from "./src/three.js";
@@ -47,7 +58,6 @@
       import { GUI } from "./src/lil-gui.module.min.js";
       import { TrackballControls } from "./src/TrackballControls.js";
       import { NRRDLoader } from "./src/NRRDLoader.js";
-
 
       let stats, camera, controls, scene, renderer;
 
@@ -157,7 +167,6 @@
             });
         });
 
-
         // renderer
 
         renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -198,23 +207,5 @@
         stats.update();
       }
     </script>
-
-<script>
-  window.addEventListener("load", () => {
-    registerSW();
-  });
-
-  // Register the Service Worker
-  async function registerSW() {
-    if ("serviceWorker" in navigator) {
-      try {
-        await navigator.serviceWorker.register("serviceworker.js");
-      } catch (e) {
-        console.log("SW registration failed");
-      }
-    }
-  }
-</script>
-
   </body>
 </html>
