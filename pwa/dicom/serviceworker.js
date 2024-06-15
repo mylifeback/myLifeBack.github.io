@@ -27,7 +27,15 @@ const assets = [
   "src/main.js",
   "src/favicon.ico",
   "src/icon-192x192.png",
-  "src/icon-512x512.png"
+  "src/icon-512x512.png",
+  "src/fflate.module.js",
+  "src/lil-gui-module.min.js",
+  "src/NRRDLoader.js",
+  "src/stats.module.js",
+  "src/three.js",
+  "src/TrackballControls.js",
+  "src/Volume.js",
+  "src/VolumeSlice.js"
 ];
 
 self.addEventListener("install", function(e) {
