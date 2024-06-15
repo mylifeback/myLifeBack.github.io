@@ -8,7 +8,7 @@ const assets = [
   "src/main.js",
   "src/favicon.ico",
   "src/icon-192x192.png",
-  "src/icon-512x512.png",
+  "src/icon-512x512.png"
 ];
 
 self.addEventListener("install", function(e) {
