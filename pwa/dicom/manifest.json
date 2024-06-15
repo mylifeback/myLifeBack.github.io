@@ -1,12 +1,12 @@
 {
-        "name":"PWA Tutorial",
-        "short_name":"PWA",
+        "name":"PWA dicom",
+        "short_name":"dicom",
         "start_url":"./index.html",
         "display":"standalone",
         "background_color":"#5900b3",
         "theme_color":"black",
         "scope": "/pwa/",
-        "description":"This is a PWA tutorial.",
+        "description":"DICOM",
         "icons":[
         {
         "src":"src/icon-192x192.png",          
