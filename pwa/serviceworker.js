@@ -1,8 +1,11 @@
 var staticCacheName = "pwa";
 
 const assets = [
-  "/",
-  "/index.html",
+  "manifest.json",
+  "serviceworker.js",
+  "index.html",
+  "src/main.css",
+  "src/main.js",
   "src/favicon.ico",
   "src/icon-192x192.png",
   "src/icon-512x512.png",
