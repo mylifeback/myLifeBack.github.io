@@ -7,7 +7,7 @@ import {
 	PlaneGeometry,
 	Texture,
 	SRGBColorSpace
-} from 'three';
+} from 'three.js';
 
 /**
  * This class has been made to hold a slice of a volume data

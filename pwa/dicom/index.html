@@ -37,17 +37,7 @@
     </div>
 
 
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "./src/three.js",
-          "three/addons/": "./src/",
-          "three/addons/jsm/libs/": "./src/",
-          "./libs/": "./src/",
-          "./misc/": "./src/"
-        }
-      }
-    </script>
+
 
     <script type="module">
       import * as THREE from "./src/three.js";
@@ -57,7 +47,7 @@
       import { GUI } from "./src/lil-gui.module.min.js";
       import { TrackballControls } from "./src/TrackballControls.js";
       import { NRRDLoader } from "./src/NRRDLoader.js";
-      // import { VTKLoader } from "three/addons/loaders/VTKLoader.js";
+
 
       let stats, camera, controls, scene, renderer;
 
