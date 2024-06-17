@@ -1,0 +1,789 @@
+[
+    {
+        "id": "b79e127500080522",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b0c4f96ee6214deb",
+        "type": "tab",
+        "label": "json",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "52b730b396851230",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "io.adafruit.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "57801d23e173f057",
+        "type": "telegram bot",
+        "botname": "Betty",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "884f1cae3d0b5943",
+        "type": "tls-config",
+        "name": "secured",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "cert.pem",
+        "keyname": "key.pem",
+        "caname": "cert.pem",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "be3c2ebcb0feef1d",
+        "type": "mqtt in",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "",
+        "topic": "mccwong/feeds/reply",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "52b730b396851230",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "9eea1eda097c9b83"
+            ]
+        ]
+    },
+    {
+        "id": "dbd825d4dc8dc05a",
+        "type": "mqtt out",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "reply",
+        "topic": "mccwong/feeds/reply",
+        "qos": "2",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "52b730b396851230",
+        "x": 590,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "bed0e2ab06a1359a",
+        "type": "telegram receiver",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "Betty",
+        "bot": "57801d23e173f057",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "9eea1eda097c9b83"
+            ],
+            [
+                "9eea1eda097c9b83"
+            ]
+        ]
+    },
+    {
+        "id": "4bc6631e4a55df02",
+        "type": "telegram sender",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "Betty to Note13",
+        "bot": "57801d23e173f057",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 680,
+        "wires": [
+            [
+                "f2261d51d1a5bd97"
+            ]
+        ]
+    },
+    {
+        "id": "9eea1eda097c9b83",
+        "type": "debug",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b92df2d0f64264e8",
+        "type": "inject",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "dbd825d4dc8dc05a"
+            ]
+        ]
+    },
+    {
+        "id": "bc88997e745ab5f3",
+        "type": "mqtt in",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "",
+        "topic": "mccwong/feeds/json",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "52b730b396851230",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 360,
+        "wires": [
+            [
+                "97e43abe67878637"
+            ]
+        ]
+    },
+    {
+        "id": "97e43abe67878637",
+        "type": "debug",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2b6ca3e09fd6f096",
+        "type": "mqtt out",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "reply",
+        "topic": "mccwong/feeds/json",
+        "qos": "2",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "52b730b396851230",
+        "x": 570,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2aea894be20a1a5d",
+        "type": "inject",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "2b6ca3e09fd6f096"
+            ]
+        ]
+    },
+    {
+        "id": "b5e5223c9603adaa",
+        "type": "inject",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload.content",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "payload.type",
+                "v": "message",
+                "vt": "str"
+            },
+            {
+                "p": "payload.chatId",
+                "v": "6324343731",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 680,
+        "wires": [
+            [
+                "4bc6631e4a55df02"
+            ]
+        ]
+    },
+    {
+        "id": "f2261d51d1a5bd97",
+        "type": "debug",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "5482a6530dee75de",
+        "type": "http request",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "JOIN to Note 13",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?title=nodered&apikey=b1396975369945799eefcd49dab491e5&deviceId=9642e2106a1d4fb9ba240338d3c60a58&text=my+text",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 360,
+        "y": 780,
+        "wires": [
+            [
+                "750f8c4cdd95fd4a"
+            ]
+        ]
+    },
+    {
+        "id": "3fee246d2061e8d1",
+        "type": "inject",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 780,
+        "wires": [
+            [
+                "5482a6530dee75de"
+            ]
+        ]
+    },
+    {
+        "id": "750f8c4cdd95fd4a",
+        "type": "debug",
+        "z": "b79e127500080522",
+        "d": true,
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "acf47242620b5024",
+        "type": "http in",
+        "z": "b79e127500080522",
+        "name": "",
+        "url": "/a",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 530,
+        "y": 900,
+        "wires": [
+            [
+                "b26c2a9b92fe2345"
+            ]
+        ]
+    },
+    {
+        "id": "3900fb3eb803b586",
+        "type": "http response",
+        "z": "b79e127500080522",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1040,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "7d6e8f66854940ba",
+        "type": "debug",
+        "z": "b79e127500080522",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "b26c2a9b92fe2345",
+        "type": "function",
+        "z": "b79e127500080522",
+        "name": "function 1",
+        "func": "msg.payload = \"hello world\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 900,
+        "wires": [
+            [
+                "3900fb3eb803b586",
+                "7d6e8f66854940ba"
+            ]
+        ]
+    },
+    {
+        "id": "527529baca76ab74",
+        "type": "https-node",
+        "z": "b79e127500080522",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "b",
+        "tls": "884f1cae3d0b5943",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 530,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "300189977bc7a555",
+        "type": "http in",
+        "z": "b0c4f96ee6214deb",
+        "d": true,
+        "name": "http-in /json",
+        "url": "/json",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "e3140e6f11cf0180",
+                "488b7ce4e6041b6c",
+                "03aebed84eb9bd43"
+            ]
+        ]
+    },
+    {
+        "id": "f537b368042dd96e",
+        "type": "file in",
+        "z": "b0c4f96ee6214deb",
+        "name": "",
+        "filename": "",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 160,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4ac9c07a1b87286",
+        "type": "file",
+        "z": "b0c4f96ee6214deb",
+        "name": "feed.json",
+        "filename": "/home/pi/www/nodered/feed.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 380,
+        "y": 540,
+        "wires": [
+            [
+                "8383385e21f8383a"
+            ]
+        ]
+    },
+    {
+        "id": "c2a216c42f1e9cdb",
+        "type": "http response",
+        "z": "b0c4f96ee6214deb",
+        "d": true,
+        "name": "output",
+        "statusCode": "200",
+        "headers": {},
+        "x": 570,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "cb9226588d5ecc31",
+        "type": "json",
+        "z": "b0c4f96ee6214deb",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 290,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "03aebed84eb9bd43",
+        "type": "debug",
+        "z": "b0c4f96ee6214deb",
+        "d": true,
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e3140e6f11cf0180",
+        "type": "function",
+        "z": "b0c4f96ee6214deb",
+        "d": true,
+        "name": "function 2",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "03aebed84eb9bd43"
+            ]
+        ]
+    },
+    {
+        "id": "488b7ce4e6041b6c",
+        "type": "template",
+        "z": "b0c4f96ee6214deb",
+        "d": true,
+        "name": "msg.req.params",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{req.query.name}} !\n<h1> hello </h1>",
+        "output": "str",
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "c2a216c42f1e9cdb"
+            ]
+        ]
+    },
+    {
+        "id": "c741ef80b6d418d4",
+        "type": "http in",
+        "z": "b0c4f96ee6214deb",
+        "name": "/json/:surname",
+        "url": "/json/:surname",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "bf2026cb76cb84cf",
+                "537a9afcd8d7249f",
+                "42616b02abb25522",
+                "9b40af618af57b2e"
+            ]
+        ]
+    },
+    {
+        "id": "0a31139e5595fc8a",
+        "type": "http response",
+        "z": "b0c4f96ee6214deb",
+        "name": "output",
+        "statusCode": "200",
+        "headers": {},
+        "x": 650,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "537a9afcd8d7249f",
+        "type": "debug",
+        "z": "b0c4f96ee6214deb",
+        "name": "name",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.query",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "bf2026cb76cb84cf",
+        "type": "template",
+        "z": "b0c4f96ee6214deb",
+        "name": "msg.req.params",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "\n<h1> This is the payload: {{req.query.name}} ! </h1>",
+        "output": "str",
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "0a31139e5595fc8a"
+            ]
+        ]
+    },
+    {
+        "id": "42616b02abb25522",
+        "type": "debug",
+        "z": "b0c4f96ee6214deb",
+        "name": "surname",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "8383385e21f8383a",
+        "type": "debug",
+        "z": "b0c4f96ee6214deb",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8a5221c39d354b34",
+        "type": "function",
+        "z": "b0c4f96ee6214deb",
+        "name": "function 3",
+        "func": "\nreturn msg.req.query;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9b40af618af57b2e",
+        "type": "template",
+        "z": "b0c4f96ee6214deb",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{req.query}}",
+        "output": "str",
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "b4ac9c07a1b87286"
+            ]
+        ]
+    }
+]
