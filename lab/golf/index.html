@@ -132,7 +132,7 @@
     <div id="output"></div>
 
     <script>
-      let chosen=0;
+      let chosen="";
       function resolve (position){
         console.log (position);
         output.innerHTML = "lat="+position.coords.latitude+"  club="+chosen+"  hole="+hole.value+"  date="+date.value
@@ -150,6 +150,7 @@
         e.target.style.backgroundColor="red";
         // let hole;
         // let date;
+        chosen="";
         const xxx = setTimeout(grey, 1000);
         
         let list = document.getElementsByName("club");
@@ -159,7 +160,7 @@
             list[i].checked = false;
           }
         }
-        if (!chosen){chosen=0};
+        if (!chosen){chosen=""};
         let output = document.getElementById("output");
         output.innerHTML=chosen;
 
