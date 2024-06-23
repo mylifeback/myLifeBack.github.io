@@ -138,12 +138,10 @@
 
       function resolve (position){
         console.log (position);
-        const content = `\
-        lat=${position.coords.latitude}lon=${position.coords.longitude}\
-        acc=${position.coords.accuracy}club=${chosen}hole=${hole.value}\
-        course=${course}
-        date=${date.value}\
-        `
+        const content = 
+        `lat=${position.coords.latitude}lon=${position.coords.longitude}`+
+        `acc=${position.coords.accuracy}club=${chosen}hole=${hole.value}`+
+        `course=${course}date=${date.value}`
         output.textContent = content;
         console.log (content);
       }
