@@ -147,7 +147,7 @@
       }
 
       function reject (error){
-        console.log (error);
+        output.textContent=error;
       }
 
       function getGPS (options){
@@ -156,8 +156,6 @@
 
       function submit(e) {
         e.target.style.backgroundColor="red";
-        // let hole;
-        // let date;
         chosen="";
         const xxx = setTimeout(grey, 1000);
         
@@ -180,12 +178,8 @@
         let output = document.getElementById("output");
         output.innerHTML=chosen;
 
-        // console.log(hole);
-        // console.log(date);
         const options = {enableHighAccuracy: true, timeout: 8000}
         getGPS(options);
-
-
       }
 
       function grey (){
