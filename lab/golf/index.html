@@ -148,7 +148,10 @@
         const url = `https://crawford1903.mynetgear.com:5678/json/gps+${content}`
         console.log(url);
         console.log(!chosen);
-        if (!chosen) {fetch(url).then(x => result.innerHTML=x);}
+        if (!chosen) {
+          console.log ("fetching");
+          fetch(url).then(x => result.innerHTML=x);
+        }
 
       }
 
