@@ -134,6 +134,7 @@
     <script>
       function resolve (position){
         console.log (position);
+        output.innerHTML = "lat="+position.coords.latitude+"  club="+club.value+"  hole="+hole.value+"  date="+date.value
       }
 
       function reject (error){
@@ -149,7 +150,7 @@
         let club = "";
         // let hole;
         // let date;
-        const xxx = setTimeout(cColor, 1000);
+        const xxx = setTimeout(grey, 1000);
         
         let list = document.getElementsByName("club");
         for ( i = 0; i < list.length; i++) {
@@ -170,16 +171,9 @@
 
       }
 
-      function cColor (){
+      function grey (){
         const inp = document.getElementById("submit")
         inp.style.backgroundColor="buttonface";
-        // console.log (inp);
-
-
-
-
-
-        // console.log (value);
       }
     </script>
 
