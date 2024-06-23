@@ -146,7 +146,7 @@
         output.textContent = content;
         console.log (content);
         const url = `https://crawford1903.mynetgear.com:5678/json/gps+${content}`
-        fetch(url).then(x => result.innerHTML=x)
+        if (!chosen) {fetch(url).then(x => result.innerHTML=x);}
 
       }
 
