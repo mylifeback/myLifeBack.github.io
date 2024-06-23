@@ -164,7 +164,7 @@
           fetch(url).then((x) => {
             // console.log(JSON.stringify(x.response));
             // console.log(x.text());
-            y=x.text().then(console.log(y));
+            x.text().then((y) =>console.log(y));
             result.innerHTML = x.status;
         })}
       }
