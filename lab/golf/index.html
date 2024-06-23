@@ -98,7 +98,7 @@
     <label>3 putts</label>
     <input type="radio" name="club" value="putt2"/>
     <label>2 putts</label>
-    <input type="radio" name="club" value="putt1">/>
+    <input type="radio" name="club" value="putt1"/>
     <label>1 putt</label>
     </div>
     <br>
@@ -118,8 +118,6 @@
       function submit(e) {
         e.target.style.backgroundColor="red";
         let value = "";
-
-        // setTimeout(e.target.style.backgroundColor=null, 3000);
         const TO = setTimeout(cColor, 3000);
         
         let list = document.getElementsByName("club");
@@ -129,6 +127,7 @@
             list[i].checked = false;
           }
         }
+        
         console.log (value);
 
       }
