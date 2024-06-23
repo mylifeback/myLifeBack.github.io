@@ -162,9 +162,6 @@
         if (chosen) {
           console.log ("fetching");
           fetch(url).then((x) => {
-            let y = JSON.stringify(x.response.body);
-            console.log(x);
-            console.log(y);
             result.innerHTML = x.response.statusText;
         })}
       }
