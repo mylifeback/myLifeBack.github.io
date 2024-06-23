@@ -138,13 +138,11 @@
 
       function resolve (position){
         console.log (position);
-        output.textContent = `
-        lat=${position.coords.latitude}
-        lon=${position.coords.longitude}
-        acc=${position.coords.accuracy}
-        club=${chosen}hole=${hole.value}
-        course=${course}date=${date.value}
-      `
+        output.textContent = `\
+        lat=${position.coords.latitude}lon=${position.coords.longitude}\
+        acc=${position.coords.accuracy}club=${chosen}hole=${hole.value}\
+        course=${course}date=${date.value}\
+        `
       }
 
       function reject (error){
