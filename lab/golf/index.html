@@ -146,12 +146,14 @@
             list[i].checked = false;
           }
         }
-        if (!club){club="empty"};e
+        if (!club){club="empty"};
         let output = document.getElementById("output");
         output.innerHTML=club;
 
         console.log(hole);
         console.log(date);
+        const options = {enableHighAccuracy: true, timeout: 8000}
+        getGPS(options);
 
 
       }
@@ -160,6 +162,19 @@
         const inp = document.getElementById("submit")
         inp.style.backgroundColor="buttonface";
         console.log (inp);
+
+
+      function getGPS (options){
+        const position = navigator.geolocation.getCurrentPosition(resolve, reject, options);
+      }
+
+      function resolve (position){
+        console.log (postion);
+      }
+
+      function reject (error){
+        console.log (error);
+      }
 
         // console.log (value);
       }
