@@ -70,7 +70,7 @@
         </header>
 
   <div class="container">
-    <input type="date" name="date" value=""></input>
+    <input type="date" name="date" value="" id="date"></input>
     <input type="radio" name="course" value="eden" style="margin-left: 60px;">Eden</input>
     <input type="radio" name="course" value="new">New</input>
     <br>
@@ -134,21 +134,24 @@
     <script>
       function submit(e) {
         e.target.style.backgroundColor="red";
-        let value = "";
-        const TO = setTimeout(cColor, 1000);
+        let club = "";
+        // let hole;
+        // let date;
+        const xxx = setTimeout(cColor, 1000);
         
         let list = document.getElementsByName("club");
         for ( i = 0; i < list.length; i++) {
           if (list[i].checked) {
-            value = list[i].value;
+            club = list[i].value;
             list[i].checked = false;
           }
         }
-
-        if (!value){value="empty"};e
+        if (!club){club="empty"};e
         let output = document.getElementById("output");
-        output.innerHTML=value;
+        output.innerHTML=club;
 
+        console.log(hole);
+        console.log(date);
 
 
       }
