@@ -71,6 +71,7 @@
           }
 
         </style>
+
         <script type="module" src="src/main.js"></script>
 </head>
 
@@ -164,8 +165,7 @@
             let y = JSON.stringify(x);
             console.log(y);
             result.innerHTML = y;
-        })
-
+        })}
       }
 
       function reject (error){
@@ -208,12 +208,14 @@
         const inp = document.getElementById("submit")
         inp.style.backgroundColor="buttonface";
       }
+
     </script>
 
 
 
 
-    <!-- <script>
+    <!-- 
+      <script>
       window.addEventListener("load", () => {
         registerSW();
       });
