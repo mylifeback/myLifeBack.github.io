@@ -132,6 +132,10 @@
     <div id="output"></div>
 
     <script>
+      function getGPS (options){
+        const position = navigator.geolocation.getCurrentPosition(resolve, reject, options);
+      }
+
       function submit(e) {
         e.target.style.backgroundColor="red";
         let club = "";
@@ -164,9 +168,7 @@
         console.log (inp);
 
 
-      function getGPS (options){
-        const position = navigator.geolocation.getCurrentPosition(resolve, reject, options);
-      }
+
 
       function resolve (position){
         console.log (postion);
