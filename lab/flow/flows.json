@@ -509,218 +509,220 @@
         ]
     },
     {
-        "id": "300189977bc7a555",
+        "id": "e4d1e53dfe32fdc2",
         "type": "http in",
         "z": "b0c4f96ee6214deb",
-        "d": true,
-        "name": "http-in /json",
-        "url": "/json",
+        "name": "/json/:file",
+        "url": "/json/:file",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 150,
-        "y": 120,
+        "x": 120,
+        "y": 40,
         "wires": [
             [
-                "e3140e6f11cf0180",
-                "488b7ce4e6041b6c",
-                "03aebed84eb9bd43"
+                "c1676e832fa137f6"
             ]
         ]
     },
     {
-        "id": "f537b368042dd96e",
+        "id": "a6facd390cb67d0f",
         "type": "file in",
         "z": "b0c4f96ee6214deb",
-        "name": "",
-        "filename": "",
-        "filenameType": "str",
+        "name": "read file",
+        "filename": "req.params",
+        "filenameType": "msg",
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 160,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b4ac9c07a1b87286",
-        "type": "file",
-        "z": "b0c4f96ee6214deb",
-        "name": "feed.json",
-        "filename": "/home/pi/www/nodered/feed.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
         "encoding": "utf8",
-        "x": 380,
-        "y": 540,
+        "allProps": false,
+        "x": 120,
+        "y": 120,
         "wires": [
             [
-                "8383385e21f8383a"
+                "0a294c79cd7154b3"
             ]
         ]
     },
     {
-        "id": "c2a216c42f1e9cdb",
-        "type": "http response",
-        "z": "b0c4f96ee6214deb",
-        "d": true,
-        "name": "output",
-        "statusCode": "200",
-        "headers": {},
-        "x": 570,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "cb9226588d5ecc31",
+        "id": "0a294c79cd7154b3",
         "type": "json",
         "z": "b0c4f96ee6214deb",
-        "name": "",
+        "name": "to obj",
         "property": "payload",
-        "action": "",
+        "action": "obj",
         "pretty": false,
-        "x": 290,
-        "y": 300,
+        "x": 250,
+        "y": 120,
         "wires": [
-            []
+            [
+                "91e45a57d409734a"
+            ]
         ]
     },
     {
-        "id": "03aebed84eb9bd43",
-        "type": "debug",
-        "z": "b0c4f96ee6214deb",
-        "d": true,
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 520,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "e3140e6f11cf0180",
+        "id": "91e45a57d409734a",
         "type": "function",
         "z": "b0c4f96ee6214deb",
-        "d": true,
-        "name": "function 2",
-        "func": "\nreturn msg;",
+        "name": "push req.query",
+        "func": "//msg.payload = msg.payload.push({hello: 123});\n//msg.payload = msg.payload.push({abc: 123});\n// msg.payload = [].push({abc: 456});\n// console.log(msg.payload);\n// msg.payload = [{abc:3456}];\n// msg.payload.push({def:45240523945});\n// msg.payload.push(msg.req.params);\nmsg.req.query.milli=Date.now();\nmsg.payload.push(msg.req.query);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
+        "x": 140,
         "y": 160,
         "wires": [
             [
-                "03aebed84eb9bd43"
+                "14c35a42aba18d1b",
+                "893b3d628e012740"
             ]
         ]
     },
     {
-        "id": "488b7ce4e6041b6c",
-        "type": "template",
+        "id": "14c35a42aba18d1b",
+        "type": "json",
         "z": "b0c4f96ee6214deb",
-        "d": true,
-        "name": "msg.req.params",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "This is the payload: {{req.query.name}} !\n<h1> hello </h1>",
-        "output": "str",
-        "x": 340,
-        "y": 60,
+        "name": "to str",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 390,
+        "y": 160,
         "wires": [
-            [
-                "c2a216c42f1e9cdb"
-            ]
+            []
         ]
     },
     {
-        "id": "c741ef80b6d418d4",
-        "type": "http in",
-        "z": "b0c4f96ee6214deb",
-        "name": "/json/:surname",
-        "url": "/json/:surname",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 180,
-        "y": 420,
-        "wires": [
-            [
-                "bf2026cb76cb84cf",
-                "537a9afcd8d7249f",
-                "42616b02abb25522",
-                "9b40af618af57b2e"
-            ]
-        ]
-    },
-    {
-        "id": "0a31139e5595fc8a",
+        "id": "0dd4d04b51937238",
         "type": "http response",
         "z": "b0c4f96ee6214deb",
         "name": "output",
         "statusCode": "200",
         "headers": {},
-        "x": 650,
-        "y": 340,
+        "x": 110,
+        "y": 240,
         "wires": []
     },
     {
-        "id": "537a9afcd8d7249f",
-        "type": "debug",
+        "id": "893b3d628e012740",
+        "type": "file",
         "z": "b0c4f96ee6214deb",
-        "name": "name",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "req.query",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 530,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "bf2026cb76cb84cf",
-        "type": "template",
-        "z": "b0c4f96ee6214deb",
-        "name": "msg.req.params",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "\n<h1> This is the payload: {{req.query.name}} ! </h1>",
-        "output": "str",
-        "x": 360,
-        "y": 360,
+        "name": "write",
+        "filename": "req.params",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 110,
+        "y": 200,
         "wires": [
             [
-                "0a31139e5595fc8a"
+                "0dd4d04b51937238"
             ]
         ]
     },
     {
-        "id": "42616b02abb25522",
+        "id": "c1676e832fa137f6",
+        "type": "function",
+        "z": "b0c4f96ee6214deb",
+        "name": "set file name",
+        "func": "let file = msg.req.params.file;\nfile = \"/home/pi/www/nodered/\"+file+\".json\";\nmsg.req.params=file;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "a6facd390cb67d0f",
+                "5b5a5be585a80501"
+            ]
+        ]
+    },
+    {
+        "id": "709e2ebd749c6156",
+        "type": "http in",
+        "z": "b0c4f96ee6214deb",
+        "name": "/new/:file",
+        "url": "/new/:file",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "82a644daaa19484a"
+            ]
+        ]
+    },
+    {
+        "id": "f225f8b6c53d2a54",
+        "type": "http response",
+        "z": "b0c4f96ee6214deb",
+        "name": "output",
+        "statusCode": "200",
+        "headers": {},
+        "x": 110,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "82a644daaa19484a",
+        "type": "function",
+        "z": "b0c4f96ee6214deb",
+        "name": "set file name",
+        "func": "let file = msg.req.params.file;\n// file = \"/nodered/\"+file+\".json\";\nfile=file+\".json\";\nmsg.req.params=file;\nmsg.payload = [];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "1bc2c983c4431e6b"
+            ]
+        ]
+    },
+    {
+        "id": "1bc2c983c4431e6b",
+        "type": "fs-copy-move",
+        "z": "b0c4f96ee6214deb",
+        "oper": "cp",
+        "srcPath": "/home/pi/www/nodered/",
+        "srcPathType": "str",
+        "srcFilename": "empty.json",
+        "srcFilenameType": "str",
+        "dstPath": "/home/pi/www/nodered/",
+        "dstPathType": "str",
+        "dstFilename": "req.params",
+        "dstFilenameType": "msg",
+        "overwrite": true,
+        "name": "copy empty file",
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "f08b3a3540e1fb91"
+            ]
+        ]
+    },
+    {
+        "id": "5b5a5be585a80501",
         "type": "debug",
         "z": "b0c4f96ee6214deb",
-        "name": "surname",
+        "name": "debug 6",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -729,60 +731,47 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 540,
-        "y": 480,
+        "x": 380,
+        "y": 80,
         "wires": []
     },
     {
-        "id": "8383385e21f8383a",
-        "type": "debug",
+        "id": "3eb7eb4d9b9abaf9",
+        "type": "comment",
         "z": "b0c4f96ee6214deb",
-        "name": "debug 7",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 520,
+        "name": "set file",
+        "info": "",
+        "x": 290,
+        "y": 40,
         "wires": []
     },
     {
-        "id": "8a5221c39d354b34",
+        "id": "601055532041e62f",
+        "type": "comment",
+        "z": "b0c4f96ee6214deb",
+        "name": "reset file",
+        "info": "",
+        "x": 120,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f08b3a3540e1fb91",
         "type": "function",
         "z": "b0c4f96ee6214deb",
-        "name": "function 3",
-        "func": "\nreturn msg.req.query;",
+        "name": "function 2",
+        "func": "msg.payload = msg.req.params;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9b40af618af57b2e",
-        "type": "template",
-        "z": "b0c4f96ee6214deb",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "{{req.query}}",
-        "output": "str",
-        "x": 240,
-        "y": 560,
+        "x": 120,
+        "y": 440,
         "wires": [
             [
-                "b4ac9c07a1b87286"
+                "f225f8b6c53d2a54"
             ]
         ]
     }
