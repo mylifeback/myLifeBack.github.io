@@ -35,7 +35,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
           }
-          
+
           .container input {
             color: blue;
           }
@@ -84,7 +84,7 @@
       function submit(e) {
         e.target.style.backgroundColor="red";
         // setTimeout(e.target.style.backgroundColor=null, 3000);
-        setTimeout(e.target.value="hello", 3000);
+        const TO = setTimeout(e.target.value="hello", 3000);
         
         let value = "";
         let list = document.getElementsByName("club");
