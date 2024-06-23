@@ -152,6 +152,7 @@
           console.log ("fetching");
           fetch(url).then((x) => {
             let y = JSON.stringify(x);
+            console.log(y);
             result.innerHTML = y;
         })
 
