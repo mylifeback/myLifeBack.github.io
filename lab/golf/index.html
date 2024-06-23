@@ -39,6 +39,11 @@
           .container input {
             color: blue;
           }
+
+          #submit {
+            backgroud-color: red;
+          }
+
         </style>
         <script type="module" src="src/main.js"></script>
 </head>
@@ -90,7 +95,7 @@
 
     <script>
       function submit(e) {
-        e.target.style.backgroundColor="red";
+        e.target.style.backgroundColor="";
         let value = "";
 
         // setTimeout(e.target.style.backgroundColor=null, 3000);
