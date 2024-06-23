@@ -141,7 +141,8 @@
         const content = `\
         lat=${position.coords.latitude}lon=${position.coords.longitude}\
         acc=${position.coords.accuracy}club=${chosen}hole=${hole.value}\
-        course=${course}date=${date.value}\
+        course=${course}
+        date=${date.value}\
         `
         output.textContent = content;
         console.log (content);
