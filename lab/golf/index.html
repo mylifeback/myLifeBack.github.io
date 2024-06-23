@@ -40,9 +40,9 @@
             color: blue;
           }
 
-          #submit {
+          /* #submit {
             background-color: red;
-          }
+          } */
 
         </style>
         <script type="module" src="src/main.js"></script>
@@ -102,7 +102,7 @@
 
     <script>
       function submit(e) {
-        e.target.style.backgroundColor="buttonface";
+        e.target.style.backgroundColor="red";
         let value = "";
 
         // setTimeout(e.target.style.backgroundColor=null, 3000);
@@ -121,7 +121,7 @@
 
       function cColor (){
         const inp = document.getElementById("button")
-        inp.backgroundColor="";
+        inp.backgroundColor="buttonface";
         console.log (inp);
 
         // console.log (value);
