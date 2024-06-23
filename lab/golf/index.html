@@ -92,12 +92,10 @@
       function submit(e) {
         e.target.style.backgroundColor="red";
         let value = "";
-        console.log (value);
+
         // setTimeout(e.target.style.backgroundColor=null, 3000);
         const TO = setTimeout(cColor(e.target), 3000);
         
-
-        console.log (value);
         let list = document.getElementsByName("club");
         for ( i = 0; i < list.length; i++) {
           if (list[i].checked) {
@@ -111,6 +109,8 @@
       function cColor (self){
         // self.backgroundColor=null;
         console.log (self);
+
+        console.log (value);
       }
     </script>
 
