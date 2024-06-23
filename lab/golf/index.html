@@ -133,11 +133,16 @@
 
     <script>
       let chosen="";
+      let course="";
+
       function resolve (position){
         console.log (position);
         output.textContent = `
         lat=${position.coords.latitude}
+        lon=${position.coords.longitude}
+        acc=${position.coords.accuracy}
         club=${chosen}hole=${hole.value}
+        course=${course}
         date=${date.value}
       `
       }
@@ -164,6 +169,14 @@
             list[i].checked = false;
           }
         }
+
+        list = document.getElementsByName("course");
+        for ( i = 0; i < list.length; i++) {
+          if (list[i].checked) {
+            course = list[i].value;
+          }
+        }
+
         if (!chosen){chosen=""};
         let output = document.getElementById("output");
         output.innerHTML=chosen;
