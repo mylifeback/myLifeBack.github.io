@@ -132,6 +132,14 @@
     <div id="output"></div>
 
     <script>
+      function resolve (position){
+        console.log (postion);
+      }
+
+      function reject (error){
+        console.log (error);
+      }
+
       function getGPS (options){
         const position = navigator.geolocation.getCurrentPosition(resolve, reject, options);
       }
@@ -170,13 +178,6 @@
 
 
 
-      function resolve (position){
-        console.log (postion);
-      }
-
-      function reject (error){
-        console.log (error);
-      }
 
         // console.log (value);
       }
