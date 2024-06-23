@@ -162,7 +162,7 @@
         if (chosen) {
           console.log ("fetching");
           fetch(url).then((x) => {
-            result.innerHTML = x.response.statusText;
+            result.innerHTML = x.response.status;
         })}
       }
 
