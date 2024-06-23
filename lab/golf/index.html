@@ -67,7 +67,8 @@
       function submit(e) {
         console.log(e);
         this.style.color="red";
-        setTimeout(3000, this.style.color="black");
+        const but = document.getElementById("submit");
+        setTimeout(3000, but.style.color="black");
         
         let value = "";
         let list = document.getElementsByName("club");
