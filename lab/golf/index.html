@@ -63,6 +63,25 @@
   
 
 
+    <script>
+      function submit(e) {
+        console.log(e);
+        this.style.color="red";
+        setTimeout(3000){this.style.color="black";};
+        
+        let value = "";
+        let list = document.getElementsByName("club");
+        for ( i = 0; i < list.length; i++) {
+          if (list[i].checked) {
+            value = list[i].value;
+          }
+        }
+        console.log (value);
+
+      }
+
+    </script>
+
 
 
 
