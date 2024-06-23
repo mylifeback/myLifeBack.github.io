@@ -131,7 +131,7 @@
     <br>
     <br>
     <div id="output"></div>
-
+    <div id="result"></div>
 
     <script>
       let chosen="";
@@ -145,6 +145,9 @@
         `&course=${course}&date=${date.value}`
         output.textContent = content;
         console.log (content);
+        const url = `https://crawford1903.mynetgear.com:5678/json/gps+${content}`
+        fetch(url).then(x => result.innerHTML=x)
+
       }
 
       function reject (error){
