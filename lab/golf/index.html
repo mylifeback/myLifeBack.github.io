@@ -135,7 +135,11 @@
       let chosen="";
       function resolve (position){
         console.log (position);
-        output.innerHTML = "lat="+position.coords.latitude+"  club="+chosen+"  hole="+hole.value+"  date="+date.value
+        output.textContent = `
+        <div> lat= ${position.coords.latitude}</div> 
+        <div> club= ${chosen}  hole= ${hole.value}</div>
+        <div> date= ${date.value} </div>
+      `
       }
 
       function reject (error){
