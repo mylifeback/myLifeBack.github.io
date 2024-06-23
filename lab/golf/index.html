@@ -163,7 +163,8 @@
           console.log ("fetching");
           fetch(url).then((x) => {
             // console.log(JSON.stringify(x.response));
-            console.log(x.text());
+            // console.log(x.text());
+            y=x.text().then(console.log(y));
             result.innerHTML = x.status;
         })}
       }
