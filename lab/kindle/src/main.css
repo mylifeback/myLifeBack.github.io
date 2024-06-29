@@ -1,10 +1,10 @@
 @font-face {
-    font-family: "Ananda Black";
-    src: url("./AnandaBlack.svg#Ananda_Black") format("svg");
+    font-family: "linford";
+    src: url("./linford.svg#linfordregular") format("svg");
 }
 
 div {
-    font-family: 'Ananda Black';
+    font-family: 'linford', cursive;
     font-size: 10em;
 }
 
