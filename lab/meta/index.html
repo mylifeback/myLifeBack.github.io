@@ -7,10 +7,13 @@
     <a-scene>
       <a-assets>
         <img id="sky" src="./src/darkSky.jpg" />
+        <audio id="world" src="./src/world.mp3" preload="auto"></audio>
       </a-assets>
 
+
+
       <a-sound
-        src="./src/world.mp3"
+        src="#world"
         autoplay="true"
         position="20 0 0"
       ></a-sound>
@@ -22,6 +25,8 @@
         radius="0.5"
         height="1.5"
         color="#FFC65D"
+        event-set__hoover="_event: mouseenter; visible=true"
+        event-set__unhoover="_event: mouseleave; visible=false"
       ></a-cylinder>
 
       <a-plane
