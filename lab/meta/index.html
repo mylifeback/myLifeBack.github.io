@@ -29,22 +29,22 @@
       <a-box 
         position="-1 0.5 -3" 
         rotation="0 45 0" 
-        color="#4CC3D9"
+        color=green
         sound="src: #reflective; on: click" 
       ></a-box>
 
       <a-sphere 
         position="0 1.25 -5" 
         radius="1.25" 
-        color="#EF2D5E"
+        color=red
         sound="src: #world; on: click"    
       ></a-sphere>
 
       <a-cylinder
         position="1 0.75 -3"
-        radius="0.5"
+        radius="0.3"
         height="1.5"
-        color="#FFC65D"
+        color=blue
         event-set__hoover="_event: mouseenter; color: #FF0000"
         event-set__unhoover="_event: mouseleave; color: #00FF00"
         sound="src: #precision; on: click"
@@ -55,7 +55,7 @@
         rotation="-90 0 0"
         width="4"
         height="4"
-        color="#EE0000"
+        color=white
       ></a-plane>
 
 
@@ -63,7 +63,7 @@
       <a-entity
         id="sphere"
         geometry="primitive: sphere"
-        material="color: yellow"
+        material="color: green"
         position="-6 4 -5"
         light="type: point; intensity: 3"
         animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 10 4 -5; loop: true"
@@ -71,9 +71,9 @@
 
       <a-entity 
         id="light" 
-        light="type: ambient; color: #888"
+        light="type: ambient; color: yellow"
       ></a-entity>
-      
+
     </a-scene>
   </body>
 </html>
