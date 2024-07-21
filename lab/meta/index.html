@@ -10,6 +10,7 @@
         <img id="sky" src="./src/darkSky.jpg" />
         <audio id="world" src="./src/world.mp3" preload="auto"></audio>
         <audio id="precision" src="./src/precision.m4a" preload="auto"></audio>
+        <audio id="reflective" src="./src/reflective.m4a" preload="auto"></audio>
       </a-assets>
 
 
@@ -23,7 +24,9 @@
       <a-entity laser-controls="hand: right; defaultModelColor: blue" raycaster="lineColor: red; lineOpacity: 0.7"></a-entity>
 
       <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"
+        sound="src: #world; on: click"    
+      ></a-sphere>
       <a-cylinder
         position="1 0.75 -3"
         radius="0.5"
