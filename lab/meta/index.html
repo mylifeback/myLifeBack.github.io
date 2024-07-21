@@ -9,6 +9,7 @@
       <a-assets>
         <img id="sky" src="./src/darkSky.jpg" />
         <audio id="world" src="./src/world.mp3" preload="auto"></audio>
+        <audio id="precision" src="./src/precision.m4a" preload="auto"></audio>
       </a-assets>
 
 
@@ -30,6 +31,7 @@
         color="#FFC65D"
         event-set__hoover="_event: mouseenter; color=#FF0000"
         event-set__unhoover="_event: mouseleave; color=#00FF00"
+        sound="src: #precision; on: click"
       ></a-cylinder>
 
       <a-plane
