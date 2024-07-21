@@ -21,21 +21,32 @@
         position="20 0 0"
       ></a-sound>
 
-      <a-entity laser-controls="hand: right; defaultModelColor: blue" raycaster="lineColor: red; lineOpacity: 0.7"></a-entity>
+      <a-entity 
+        laser-controls="hand: right; defaultModelColor: blue" 
+        raycaster="lineColor: red; lineOpacity: 0.7"
+      ></a-entity>
 
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"
+      <a-box 
+        position="-1 0.5 -3" 
+        rotation="0 45 0" 
+        color="#4CC3D9"
         sound="src: #reflective; on: click" 
       ></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"
+
+      <a-sphere 
+        position="0 1.25 -5" 
+        radius="1.25" 
+        color="#EF2D5E"
         sound="src: #world; on: click"    
       ></a-sphere>
+
       <a-cylinder
         position="1 0.75 -3"
         radius="0.5"
         height="1.5"
         color="#FFC65D"
-        event-set__hoover="_event: mouseenter; color=#FF0000"
-        event-set__unhoover="_event: mouseleave; color=#00FF00"
+        event-set__hoover="_event: mouseenter; color: #FF0000"
+        event-set__unhoover="_event: mouseleave; color: #00FF00"
         sound="src: #precision; on: click"
       ></a-cylinder>
 
@@ -58,7 +69,11 @@
         animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 10 4 -5; loop: true"
       ></a-entity>
 
-      <a-entity id="light" light="type: ambient; color: #888"></a-entity>
+      <a-entity 
+        id="light" 
+        light="type: ambient; color: #888"
+      ></a-entity>
+      
     </a-scene>
   </body>
 </html>
