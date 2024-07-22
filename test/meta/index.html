@@ -17,19 +17,14 @@
         console.log ('clicking...');
       }
 
-      // function context () {
-      //   context=ew AudioContext();
-      // }
+      function music (){
+        sound.play();
+        console.log('play music');
+      }
 
-      // function resume () {
-      //   context.resume.then(()=>{});
-      // }
-
-      // window.addEventListener("onload", context);
-      // window.addEventListener("buttonup", resume);
-
+      window.addEventListener("click", music);
       window.addEventListener("click", clicked);
-      window.addEventListener("buttonup", clicked);
+      window.addEventListener("touchdown", music);
       window.addEventListener("buttondown", clicked);
       window.addEventListener("axismove", clicked);
 
@@ -43,10 +38,22 @@
           var sound = new Howl({
       src: ['./src/world.mps']
     });
+    // sound.play();
     </script>
   </head>
 
   <body>
+    <audio controls>
+      <source src="./src/world.mp3" type="audio/mpeg" />
+
+      <p>
+        Download <a href="myAudio.mp3" download="myAudio.mp3">MP3</a> or
+        <a href="myAudio.ogg" download="myAudio.ogg">OGG</a> audio.
+      </p>
+    </audio>
+    
+
+
 
     <div>
     <a-scene background="color: yellow" embedded tracked-controls>
@@ -55,12 +62,11 @@
         <audio id="world" src="./src/world.mp3" preload="auto"></audio>
         <audio id="precision" src="./src/precision.m4a" preload="auto"></audio>
         <audio id="reflective" src="./src/reflective.m4a" preload="auto"></audio>
+        <a-asset-item id="skull" src="./src/skull.gltf"></a-asset-item>
       </a-assets>
 
-      <!-- <a-sound src="src: #world" autoplay="true" position="0 2 5"></a-sound> -->
 
-    <a-entity sound="src: #world; autoplay: false; on: buttonup"></a-entity>
-
+    <a-gltf-model src="#skull" position="0 1.5 -4"></a-gltf-model>
 
 
       <a-entity text="value: XXXXXXXXXOOOOOOOOOO" position="0 0.5 -4" scale="8 8 8"></a-entity>
@@ -81,7 +87,7 @@
 
   </div>
 
-  <div id="clicked" onclick="clicked()" style="border:solid red 1px; background-color: aqua;">
+  <div id="clicked" style="border:solid red 1px; background-color: aqua;">
       <div>please</div>
       <div>click</div>  
       <div>me</div>
