@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <script src="./src/aframe.160.min.js"></script>
+    <script src="./src/event.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene background="color: blue" stats>
+      <a-assets>
+        <img id="sky" src="./src/darkSky.jpg" />
+        <audio id="world" src="./src/world.mp3" preload="auto"></audio>
+        <audio id="precision" src="./src/precision.m4a" preload="auto"></audio>
+        <audio id="reflective" src="./src/reflective.m4a" preload="auto"></audio>
+      </a-assets>
+
+
+
+      <a-sound
+        src="#world"
+        autoplay="true"
+        position="20 0 0"
+      ></a-sound>
+
+      <a-entity 
+        laser-controls="hand: right; defaultModelColor: blue" 
+        raycaster="lineColor: red; lineOpacity: 0.7"
+      ></a-entity>
+
+      <a-entity text="value: hello world" position="2 5 -4"></a-entity>
+
+      <a-box 
+        position="-1 0.5 -3" 
+        rotation="0 45 0" 
+        color=green
+        sound="src: #reflective; on: click" 
+        text="value: this is the same play"
+      ></a-box>
+
+      <a-sphere 
+        position="0 1.25 -5" 
+        radius="1.25" 
+        color=red
+        sound="src: #world; on: click"    
+      ></a-sphere>
+
+      <a-cylinder
+        position="1 0.75 -3"
+        radius="0.3"
+        height="1.5"
+        color=blue
+        event-set__hoover="_event: mouseenter; color: #FF0000"
+        event-set__unhoover="_event: mouseleave; color: #00FF00"
+        sound="src: #precision; on: click"
+      ></a-cylinder>
+
+      <a-plane
+        position="0 0 -4"
+        rotation="-90 0 0"
+        width="4"
+        height="4"
+        color=yellow
+      ></a-plane>
+
+
+
+      <a-entity
+        id="sphere"
+        geometry="primitive: sphere; radius: 0.1"
+        material="color: green"
+        position="-6 4 -5"
+        light="type: point; intensity: 8; color: purple"
+        animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 10 4 -5; loop: true"
+      ></a-entity>
+
+      <a-entity 
+        id="light" 
+        light="type: hemisphere; color: blue; groundColor: yellow"
+      ></a-entity>
+
+    </a-scene>
+  </body>
+</html>
