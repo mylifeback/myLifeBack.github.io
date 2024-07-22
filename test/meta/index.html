@@ -11,34 +11,31 @@
     </style>
 
     <script>
-      // let context; 
-
-      function clicked () {
-        console.log ('clicking...');
+      function handle (e) {
+        console.log (e.type);
+        if (e.type === "touchstart"){
+          hello.style.borderColor = "green";
+          hello.textContent = "hello";
+          console.log(hello);
+        }
+        else if (e.type === "touchend"){
+            hello.style.borderColor = "red";
+            hello.textContent = "up up up ";
+        }
       }
+      
 
-      function music (){
-        sound.play();
-        console.log('play music');
-      }
-
-      window.addEventListener("click", music);
-      window.addEventListener("click", clicked);
-      window.addEventListener("touchdown", music);
-      window.addEventListener("buttondown", clicked);
-      window.addEventListener("axismove", clicked);
+      window.addEventListener("click", handle);
+      window.addEventListener("touchend", handle);
+      window.addEventListener("touchstart", handle);
+      // window.addEventListener("buttondown", clicked);
+      // window.addEventListener("axismove", clicked);
 
     </script>
     <script src="./src/aframe.160.min.js"></script>
     <script src="./src/event.min.js"></script>
-    <script src="./src/howler.min.js"></script>
-
-
+    <!-- <script src="./src/howler.min.js"></script> -->
     <script>
-          var sound = new Howl({
-      src: ['./src/world.mps']
-    });
-    // sound.play();
     </script>
   </head>
 
@@ -52,11 +49,7 @@
       </p>
     </audio>
     
-
-
-
-    <div>
-    <a-scene background="color: yellow" embedded tracked-controls>
+    <a-scene background="color: hsl(90, 50%, 20%)" embedded tracked-controls>
       <a-assets>
         <img id="sky" src="./src/darkSky.jpg" />
         <audio id="world" src="./src/world.mp3" preload="auto"></audio>
@@ -65,12 +58,7 @@
         <a-asset-item id="skull" src="./src/skull.gltf"></a-asset-item>
       </a-assets>
 
-
-    <a-gltf-model src="#skull" position="0 1.5 -4"></a-gltf-model>
-
-
-      <a-entity text="value: XXXXXXXXXOOOOOOOOOO" position="0 0.5 -4" scale="8 8 8"></a-entity>
-
+      <a-gltf-model src="#skull" position="0 1.5 -4" scale="2.5 2.5 2.5"></a-gltf-model>
 
       <a-plane
         position="0 0 -4"
@@ -78,16 +66,15 @@
         width="4"
         height="4"
         color=blue
-
       ></a-plane>
-
-
-
+      <!-- <a-entity id="river" sound="src: #reflective; autoplay: false; on: click;"></a-entity> -->
     </a-scene>
 
-  </div>
-
-  <div id="clicked" style="border:solid red 1px; background-color: aqua;">
+    <br>
+    <br>
+    <br>
+    <br>
+  <div id="hello" style="border:solid red 1px; background-color: aqua;">
       <div>please</div>
       <div>click</div>  
       <div>me</div>
