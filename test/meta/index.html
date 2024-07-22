@@ -1,11 +1,47 @@
 <html>
   <head>
+    <style>
+        a-scene {
+          max-height: 300px;
+          max-width: 600px;
+          border: solid red 2px;
+        }
+
+
+    </style>
+
+    <script>
+      // let context; 
+
+      function clicked () {
+        console.log ('clicking...');
+      }
+
+      // function context () {
+      //   context=ew AudioContext();
+      // }
+
+      // function resume () {
+      //   context.resume.then(()=>{});
+      // }
+
+      // window.addEventListener("onload", context);
+      // window.addEventListener("buttonup", resume);
+
+      window.addEventListener("click", clicked);
+      window.addEventListener("buttonup", clicked);
+      window.addEventListener("buttondown", clicked);
+      window.addEventListener("axismove", clicked);
+
+    </script>
     <script src="./src/aframe.160.min.js"></script>
     <script src="./src/event.min.js"></script>
   </head>
 
   <body>
-    <a-scene background="color: grey" stats>
+
+    <div>
+    <a-scene background="color: yellow" embedded tracked-controls>
       <a-assets>
         <img id="sky" src="./src/darkSky.jpg" />
         <audio id="world" src="./src/world.mp3" preload="auto"></audio>
@@ -13,11 +49,13 @@
         <audio id="reflective" src="./src/reflective.m4a" preload="auto"></audio>
       </a-assets>
 
+      <!-- <a-sound src="src: #world" autoplay="true" position="0 2 5"></a-sound> -->
+
+    <a-entity sound="src: #world; autoplay: false; on: buttonup"></a-entity>
 
 
 
-
-      <a-entity text="value: XXXXXXXXXOOOOOOOOOO" position="0 0.5 -4" scale="4 4 4"></a-entity>
+      <a-entity text="value: XXXXXXXXXOOOOOOOOOO" position="0 0.5 -4" scale="8 8 8"></a-entity>
 
 
       <a-plane
@@ -26,11 +64,21 @@
         width="4"
         height="4"
         color=blue
-        sound="src: #reflective; on: click"
+
       ></a-plane>
 
 
 
     </a-scene>
+
+  </div>
+
+  <div id="clicked" onclick="clicked()" style="border:solid red 1px; background-color: aqua;">
+      <div>please</div>
+      <div>click</div>  
+      <div>me</div>
+  </div>
+
+
   </body>
 </html>
