@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <!-- <script src="./src/aframe.160.min.js"></script> -->
+      <script src="./src/aframe.160.min.js"></script>
       <!-- <script src="./src/component/stats-panel.js"></script>
       <link rel="stylesheet" href="./src/style.css"> -->
       <link rel="icon" type="images/x-icon" href="./src/favicon.ico" />
+      <style>
+        .overlay {
+          border: red 2px solid;
+          height: 200px;
+          width: 400px;
+        }
+      </style>
       <script>
 
       </script>
   </head>
   <body>
-    <div class="text-overlay" onpointerdown="console.log('pointer')" style="z-index: -1000">
+    <div class="overlay" onpointerdown="console.log('pointer')">
       <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>
-      <p>User-defined additional statistics, output in the style of A-Frame stats</p>       
       <p onclick="console.log('clicked')">User-defined additional statistics, output in the style of A-Frame stats</p>
     </div>
 
@@ -42,7 +39,7 @@
 
 
 
-    <div class="below-overlay"  style="z-index: -1000">
+    <!-- <div class="below-overlay"  style="z-index: -1000">
       <p>User-defined additional statistics, n the style of A-Frame stats</p>
       <p>User-defined additional statistics, output in the style of A-Frame stats</p>
       <p>User-defined additionalin the style of A-Frame stats</p>
@@ -54,7 +51,7 @@
       <p>User-defined additional statistics, output in the style of A-Framstyle of A-Frame stats</p>
       <p>User-defined additional statistics, output in the se stats</p>       
       <p onclick="console.log('clicked')">User-defined additional statistics, output in the style of A-Frame stats</p>
-    </div>
+    </div> -->
 
   </body>
 </html>
