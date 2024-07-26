@@ -20,8 +20,10 @@
                 top: 0;
                 left: 0;
                 z-index: -1;
-                width: 300px;
-                height: 150px;
+                width: 100%;
+                height: 100%;
+                /* width: 300px;
+                height: 150px; */
                 /* pointer-events: none; */
             }
 
@@ -30,6 +32,10 @@
         <script type="module">
             import * as THREE from "./src/aframe.js";
 
+            function test () {
+                console.log('h1 clicked');
+                
+            }
   
 
         </script>
@@ -38,7 +44,8 @@
     </head>
     <body>
         <h1 id="h" onclick="console.log('H1')">lab</h1>
-        <a-scene  xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
+        <h1 id="h1" onclick=test()>lab</h1>
+        <a-scene embedded xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
             <a-box color="tomato" depth="2" height="1" width="0.5"></a-box>
         </a-scene>
     </body>
