@@ -15,7 +15,7 @@
             }
 
             #a {
-                background-color: yellow;
+                /* background-color: yellow; */
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -29,25 +29,41 @@
 
         </style>
 
+        <script src="./src/aframe.js"></script>
+        <script src="./src/howler.min.js"></script>
+
         <script type="module">
-            import * as THREE from "./src/aframe.js";
-            import "./src/howler.min.js";
+        </script>
 
-            function test () {
-                console.log('h1 clicked');
-
+        <script>
+            const reflect = function () {
+                console.log('reflective played');
+                sound1.play();
+                console.log('is it playing ??')
             }
-  
+            const world = function () {
+                console.log('world played');
+                sound2.play();
+                console.log('is it playing ??')
+            }
+
+            var sound1 = new Howl({
+                src: ['./src/reflective.m4a']
+            });
+            var sound2 = new Howl({
+                src: ['./src/world.mp3']
+            });
 
         </script>
 
-
     </head>
     <body>
-        <h1 id="h" onclick="console.log('H1')">lab</h1>
-        <h1 id="h1" onclick=test()>lab</h1>
-        <a-scene embedded xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
-            <a-box color="tomato" depth="2" height="1" width="0.5"></a-box>
+        <h1 id="h" onclick="world()">lab</h1>
+        <h1 id="h1" onclick="reflect()">lab</h1>
+        <a-scene  embedded xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
+            <!-- <a-box color="tomato" depth="0.5" height="1" width="0.5" position="-1 -1 -1"></a-box> -->
+            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
+            <a-entity id="audio" geometry="primitive: sphere" position="-2 1 -5" sound="src: url(src/world.mp3); autoplay: false; on: 'pointerdown';"></a-entity>
         </a-scene>
     </body>
 </html>
