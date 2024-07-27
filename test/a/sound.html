@@ -35,9 +35,9 @@
         <script src="./component/react.js"></script>
 
         <script>
-            const reflect = function (part) {
+            const reflect = function () {
                 console.log('reflective played');
-                sound1.play(part);
+                sound1.play();
                 console.log('is it playing ??')
             }
             const world = function (part) {
@@ -45,10 +45,28 @@
                 sound2.play(part);
                 console.log('is it playing ??')
             }
+            
+            const p1 = function (){
+                sound2.play('first');
+                console.log ('played p1');
+            }
+
+            const p2 = function (){
+                sound2.play('second');
+                console.log('played p2');
+            }
+
+            const timeout = function (wait){
+                setTimeout (p1, wait*1000 );
+            }
+
+
+
 
             var sound1 = new Howl({
                 src: ['./src/reflective.m4a']
             });
+
             var sound2 = new Howl({
                 src: ['./src/world.mp3'],
                 sprite: {
@@ -59,14 +77,15 @@
                 }
             });
 
-
+            setInterval (p2, 5000);
 
         </script>
 
     </head>
     <body>
-        <h1 onclick="world('first')">first</h1>
-        <h1 onclick="world('second')">second</h1>
+        <h1 onclick="reflect()">reflect</h1>
+        <h1 onclick="world('first')">world(first)</h1>
+        <h1 onclick="timeout()">time out</h1>
         <a-scene  embedded xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
 
             <a-plane gamepad react position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
