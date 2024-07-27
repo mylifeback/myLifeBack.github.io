@@ -7,7 +7,7 @@ AFRAME.registerComponent('react', {
     }
   },
 
-  this.listener = function (e) {
+  listener: function (e) {
     console.log (e.type + "type");
     console.log (e.target + "target");
     console.log (e.currenttarget + "current");
