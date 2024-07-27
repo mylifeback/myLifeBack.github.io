@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>gamepad + react</title>
+        <title>gamepad + react + event</title>
 
         <style>
             * {
@@ -10,7 +10,7 @@
             }
 
             h1 {
-                /* pointer-events: none; */
+                pointer-events: none;
                 border: 1px solid red;
                 width: 150px;
             }
@@ -38,18 +38,18 @@
         <script src="./component/event.js"></script>
 
         <script>
-            const world = function () {
-
+            const world = function (e) {
+                console.log(e);
             }
         </script>
 
     </head>
     <body>
-        <h1 id="h" onclick="world()">lab</h1>
-        <h1 id="h1" onclick="reflect()">lab</h1>
-        <a-scene  embedded xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
+        <h1 id="h" onclick="world(this)">lab</h1>
+        <h1 id="h1" onclick="world(this)">lab</h1>
+        <a-scene  embedded xr-mode-ui="enabled: false" id="a">
             <a-camera position="2 1.6 0"></a-camera>
-            <a-entity tracked-controls="id: 1" gamepad react></a-entity>
+
             <a-plane event music react position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
             <a-sphere color="red" radius="0.3" position="0 0 -4"></a-sphere>
             

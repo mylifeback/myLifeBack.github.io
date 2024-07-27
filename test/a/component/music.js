@@ -3,6 +3,16 @@ AFRAME.registerComponent('music', {
     console.log ('music component init');
     import ('./src/howler.min.js');
 
+
+    this.part = 'fourth';
+    // window.addEventListener ('gamepad', this.play.bind(this));
+    // console.log ('listener added');
+
+    this.el.addEventListener('click', this.onClick.bind(this));
+  },
+
+  onClick: function (e) {
+    console.log ("clicked clicked");
     this.sound = new Howl({
       src: ['./src/world.mp3'],
       sprite: {
@@ -12,17 +22,15 @@ AFRAME.registerComponent('music', {
           fourth: [8000, 5000]
       }
     });
-    this.part = 'fourth';
-    window.addEventListener ('gamepad', this.play.bind(this));
-    console.log ('listener added');
+    this.sound.play(this.part);
   },
 
-  play: function () {
+  // play: function () {
 
-      this.sound.play(this.part);
-      console.log('is it playing??  ' + this.part);
+  //     this.sound.play(this.part);
+  //     console.log('is it playing??  ' + this.part);
   
-  },
+  // },
 
   tick: function (time, timeDelta) {
 
