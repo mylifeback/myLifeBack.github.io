@@ -1,10 +1,16 @@
 AFRAME.registerComponent('react', {
   init: function () {
     console.log ('react component init');
-    console.log (this.gamepads);
-    console.log (this.gamepad);
-    console.log (this.gamepad.axes);
-    console.log (this.gamepad.axes[0]);
+    this.events = [gamepadconnected, gamepaddisconnected];
+    for (evt in this.events){
+      this.el.addEventListener(evt, this.listener);
+    }
+  },
+
+  this.listener = function (e) {
+    console.log (e.type + "type");
+    console.log (e.target + "target");
+    console.log (e.currenttarget + "current");
   },
 
   tick: function (time, timeDelta) {
