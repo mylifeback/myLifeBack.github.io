@@ -31,6 +31,8 @@
 
         <script src="./src/aframe.js"></script>
         <script src="./src/howler.min.js"></script>
+        <script src="./component/gamepad.js"></script>
+        <script src="./component/react.js"></script>
 
         <script>
             const reflect = function (part) {
@@ -67,7 +69,7 @@
         <h1 onclick="world('second')">second</h1>
         <a-scene  embedded xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
 
-            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
+            <a-plane gamepad react position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
             <a-sphere color="red" radius="0.3" position="0 0 -4"></a-sphere>
 
         </a-scene>
