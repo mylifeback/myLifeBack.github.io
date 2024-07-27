@@ -20,7 +20,7 @@ AFRAME.registerComponent('music', {
   play: function () {
 
       this.sound.play(this.part);
-      console.log('is it playing??  ' + part);
+      console.log('is it playing??  ' + this.part);
   
   },
 
