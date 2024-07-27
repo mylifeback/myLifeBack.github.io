@@ -34,21 +34,9 @@
         <script src="./src/howler.min.js"></script>
         <script src="./gamepad.js"></script>
         <script src="./react.js"></script>
+        <script src="./music.js"></script>
 
         <script>
-
-
-            function world (){
-                const gamepads = navigator.getGamepads();
-                const gamepad = gamepads[1];
-                console.log (gamepads);
-                console.log (gamepad);
-                const a = document.querySelector('a-plane');
-                console.log (a);
-                console.log (a.object3D);
-                a.addEventListener ('buttonchanged', react);
-                console.log ('react set');
-            }
 
         </script>
 
@@ -59,7 +47,7 @@
         <a-scene  embedded xr-mode-ui="enabled: false" id="a" onclick = "console.log('scene')">
             <a-camera position="2 1.6 0"></a-camera>
             <a-entity tracked-controls="id: 1" gamepad react></a-entity>
-            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
+            <a-plane music react position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
             <a-sphere color="red" radius="0.3" position="0 0 -4"></a-sphere>
             
     </body>
