@@ -12,14 +12,14 @@ AFRAME.registerComponent('music', {
           fourth: [8000, 5000]
       }
     });
-
-    window.addEventListener ('gamepad', this.play('fourth').bind(this));
+    this.part = 'fourth';
+    window.addEventListener ('gamepad', this.play.bind(this));
     console.log ('listener added');
   },
 
-  play: function (part) {
+  play: function () {
 
-      this.sound.play(part);
+      this.sound.play(this.part);
       console.log('is it playing??  ' + part);
   
   },
