@@ -13,7 +13,7 @@ AFRAME.registerComponent('music', {
       }
     });
 
-    window.addEventListener ('gamepad', this.play(fourth).bind(this));
+    window.addEventListener ('gamepad', this.play('fourth').bind(this));
     console.log ('listener added');
   },
 
