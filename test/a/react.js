@@ -1,7 +1,7 @@
 AFRAME.registerComponent('react', {
   init: function () {
     console.log ('react component init');
-    this.events = [gamepadconnected, gamepaddisconnected];
+    this.events = [controllerconnected, controllerdisconnected, buttonchanged, buttondown];
     for (evt in this.events){
       this.el.addEventListener(evt, this.listener);
     }
