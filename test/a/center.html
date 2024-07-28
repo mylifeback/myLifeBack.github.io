@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>debug</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                background-color: yellow;
+                width: 100%; 
+                position: relative;           /* 1) only relative works */
+                height: 100%;                 /* 2) must set height */
+            }
+
+            .item {
+                border: green solid 3px;  
+                position: absolute;           /* 1) only absolute works */
+                inset: 0;                     /* 2) inset must be 0 */
+                margin: auto;                 /* 3) margin must be auto */
+            }
+
+        </style>
+
+
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="item">
+              center
+            </div>
+        </div>  
+
+            
+    </body>
+</html>
