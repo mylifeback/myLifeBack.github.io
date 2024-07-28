@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>current</title>
+        <title>debug</title>
 
         <style>
             * {
@@ -32,32 +32,22 @@
                 /* pointer-events: none; */
             }
 
-
-
         </style>
 
-        <!-- <script src="./src/aframe.js"></script>
-        <script src="./component/gamepad.js"></script>
-        <script src="./component/react.js"></script>
-        <script src="./component/event.js"></script> -->
-        <script type=module src="./src/debug.js"></script>
-
+        <script src="./component/debug.js"></script>
         <script >
 
         </script>
 
     </head>
     <body>
-        <div class="container">
+        <!-- <div onpointerenter='((event) => {console.log(event); console.log(this);})();' class="container"> -->
+        <div onpointerenter='console.log(event); const a = event;  hello(a);' class="container">
             <h1>
                 HELLO
             </h1>
         </div>  
-        <!-- <a-scene  embedded xr-mode-ui="enabled: false" id="a">
-            <a-camera position="2 1.6 0"></a-camera>
-            <a-plane event gamepad react position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="blue"></a-plane>
-            <a-sphere color="red" radius="0.3" position="0 0 -4"></a-sphere>
-        </a-scene> -->
+
             
     </body>
 </html>
