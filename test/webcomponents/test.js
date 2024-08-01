@@ -1,0 +1,1 @@
+const ab = document.getElementById
