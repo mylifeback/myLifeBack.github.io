@@ -31,6 +31,6 @@ function kicking (){
   console.log('kicking');
   // document.getElementsByTagName('service-worker').setAttribute('color', 'blueorigin');
   const a = document.getElementsByTagName('service-worker');
-  console.log a;
+  console.log (a);
 
 }
