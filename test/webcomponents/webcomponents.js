@@ -21,6 +21,7 @@ class ServiceWorker extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     console.log(`Attribute ${name} has changed.`);
+    console.log(newValue);
   }
 }
 
