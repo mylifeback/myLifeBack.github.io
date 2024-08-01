@@ -29,4 +29,5 @@ customElements.define("service-worker", ServiceWorker);
 
 function kicking (){
   console.log('kicking');
+  document.getElementsByTagName('service-worker').setAttribute('color', 'blueorigin')
 }
