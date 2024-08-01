@@ -26,3 +26,7 @@ class ServiceWorker extends HTMLElement {
 }
 
 customElements.define("service-worker", ServiceWorker);
+
+function kicking (){
+  console.log('kicking');
+}
