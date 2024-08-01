@@ -34,6 +34,7 @@ function kicking (){
   console.log (a);
   const b = document.getElementById('service');
   console.log (b);
+  b.setAttribute('color', "blueorigin");
   
 
 }
