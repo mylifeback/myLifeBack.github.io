@@ -4,6 +4,7 @@ class ServiceWorker extends HTMLElement {
 
   constructor() {
     super();
+    console.log('super called');
   }
   // Element functionality written in 
   connectedCallback() {
