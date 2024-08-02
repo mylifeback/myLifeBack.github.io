@@ -1,6 +1,7 @@
 
 
-self.addEventListener ('push', (e) => {
+self.addEventListener('push', (e) => {
+  console.log('push message RECEIVED');
   console.log(e);
 })
 
