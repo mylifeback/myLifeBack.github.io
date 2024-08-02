@@ -4,10 +4,12 @@
         <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
         <!-- <script src="webcomponents.js" defer></script> -->
          <script>
+            const c = document.getElementById('p');
             const b = document.getElementById('p');
             debugger
             console.log(b);
-            b.addEventListener ('click', ()=>{
+            console.log(c);
+            c.addEventListener ('click', ()=>{
                 Notification.requestPermission().then((result)=>{
                     if (result ==="granted") {
                         randomNotification();
