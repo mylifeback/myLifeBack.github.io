@@ -32,6 +32,7 @@
 
             navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
+                console.log(registration);
                 return registration.pushManager
                     .getSubscription()
                     .then (async (subscription) => {
