@@ -50,7 +50,8 @@
                 return registration.pushManager
                     .getSubscription()
                     .then (async (subscription) => {
-                        console.log (subscription)
+                        console.log (subscription);
+                        return subscription;
                     })
             })
             .then ((subscription) => {
