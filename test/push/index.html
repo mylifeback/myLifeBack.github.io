@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>push</title>
+        <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
+        <!-- <script src="webcomponents.js" defer></script> -->
+         <script>
+            const button = document.getElementById('notifications');
+            button.addEventListener ('click', ()=>{
+                Notification.requestPermission().then((result)=>{
+                    if (result ==="granted") {
+                        randomNotification();
+                    }
+                })
+            });
+
+            function randomNotification (){
+                New Notification ("i got new message", {body: "this is my body"});
+
+            }
+         </script>
+    </head>
+    <body>
+
+        <button id="notifications"> click me</button>
+    </body>
+</html>
