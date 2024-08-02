@@ -6,6 +6,7 @@
          <script>
             const button = document.getElementById('notifications');
             debugger
+            console.log(button);
             button.addEventListener ('click', ()=>{
                 Notification.requestPermission().then((result)=>{
                     if (result ==="granted") {
