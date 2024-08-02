@@ -5,6 +5,7 @@
         <!-- <script src="webcomponents.js" defer></script> -->
          <script>
             const button = document.getElementById('notifications');
+            debugger
             button.addEventListener ('click', ()=>{
                 Notification.requestPermission().then((result)=>{
                     if (result ==="granted") {
