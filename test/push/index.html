@@ -50,10 +50,12 @@
 
             console.log (converted);
 
-            registration.pushManager.subscribe ({
+            const sub = registration.pushManager.subscribe ({
                 userVisibleOnly: true,
                 applicationServerKey: converted
             });
+
+            console.log ("subscribed >>> " + sub);
 
             // fetch ('https://crawford1903.mynetgear.com:5678/register', {
             //     method: 'post',
