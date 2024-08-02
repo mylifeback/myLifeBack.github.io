@@ -30,7 +30,7 @@
 
             }
 
-            navigator.ServiceWorker.register('serviceworker.js')
+            navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
                 return registration.pushManager
                     .getSubscription()
