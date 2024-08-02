@@ -32,6 +32,20 @@
 
             navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
+
+
+                            const converted = 'BOYdZKgUKer8SPDRmV9-D6U9uQwtPGbRVan_u9p_ORhK5W1p6tIgwzq1lecia6dInT6bws3EaG_OepoeozKd1ac';
+
+                            console.log (converted);
+
+                            const sub = registration.pushManager.subscribe ({
+                                userVisibleOnly: true,
+                                applicationServerKey: converted
+                            });
+
+                            console.log ("subscribed >>> " + sub);
+
+
                 console.log(registration);
                 return registration.pushManager
                     .getSubscription()
@@ -47,16 +61,7 @@
             // const vapidPublicKey = await response.text();
             // const VAPIDkey = urlBase64ToUint8Array (vapidPublicKey);
 
-            const converted = 'BOYdZKgUKer8SPDRmV9-D6U9uQwtPGbRVan_u9p_ORhK5W1p6tIgwzq1lecia6dInT6bws3EaG_OepoeozKd1ac';
 
-            console.log (converted);
-
-            const sub = registration.pushManager.subscribe ({
-                userVisibleOnly: true,
-                applicationServerKey: converted
-            });
-
-            console.log ("subscribed >>> " + sub);
 
             // fetch ('https://crawford1903.mynetgear.com:5678/register', {
             //     method: 'post',
