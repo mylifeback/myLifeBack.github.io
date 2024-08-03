@@ -2,15 +2,10 @@
     <head>
         <title>push</title>
         <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
-        <!-- <script src="webcomponents.js" defer></script> -->
 
     </head>
     <body>
-
         <button id="p"> click me</button>
-
-
-
         <script>
             const c = document.getElementById('p');
             console.log(c);
@@ -27,7 +22,7 @@
             }
 
             debugger
-            
+
             navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
                 console.log(registration);  
@@ -49,16 +44,9 @@
                         console.log (subscription.expirationTime);
                         console.log (subscription.options);
                         // return subscription;
+                        console.log (JSON.stringify({subscription}));
                     });
             });
-
-
-
-            // const response = await fetch ('https://crawford1903.mynetgear.com:5678/getkey');
-            // const vapidPublicKey = await response.text();
-            // const VAPIDkey = urlBase64ToUint8Array (vapidPublicKey);
-
-
 
             // fetch ('https://crawford1903.mynetgear.com:5678/register', {
             //     method: 'post',
@@ -67,9 +55,6 @@
             //     },
             //     body: JSON.stringify({subscription}),
             // });
-
-
-
          </script>
     </body>
 </html>
