@@ -27,6 +27,7 @@
             }
 
             debugger
+            
             navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
                 console.log(registration);  
@@ -36,19 +37,19 @@
                     userVisibleOnly: true,
                     applicationServerKey: converted
                 })
-                .then (subscription){
+                .then ((subscription) => {
                     console.log ("subscribed >>> " + subscription);
-                };
+                });
                             
-                registration.pushManager
-                    .getSubscription()
-                        .then ((subscription) => {
-                            console.log (subscription);
-                            console.log (subscription.endpoint);
-                            console.log (subscription.expirationTime);
-                            console.log (subscription.options);
-                            // return subscription;
-                        });
+            registration.pushManager
+                .getSubscription()
+                    .then ((subscription) => {
+                        console.log (subscription);
+                        console.log (subscription.endpoint);
+                        console.log (subscription.expirationTime);
+                        console.log (subscription.options);
+                        // return subscription;
+                    });
             });
 
 
