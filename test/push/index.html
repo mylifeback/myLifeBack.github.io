@@ -43,16 +43,15 @@
                             console.log (subscription.endpoint);
                             console.log (subscription.expirationTime);
                             console.log (subscription.options);
-                            // return subscription;
-                            console.log (JSON.stringify({subscription}));
-                            const jason = subscription.toJSON();
-                            console.log (jason);
+                            const str = JSON.stringify({subscription});
+                            console.log (str);
+
                             fetch ('https://crawford1903.mynetgear.com:5678/register', {
                                 method: 'post',
                                 headers: {
                                     "content-type": "application/json",
                                 },
-                                body: jason,
+                                body: str,
                             })
                             .then ((response) => {
                                 console.log (response);
