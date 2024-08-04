@@ -1,0 +1,984 @@
+[
+    {
+        "id": "cd859e7402ef25f2",
+        "type": "tab",
+        "label": "AJAX and WS",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "24498720fb0cdd47",
+        "type": "tab",
+        "label": "HTML server",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ea3b568a3106c2de",
+        "type": "file in",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "filename": "/Users/maurice/Downloads/javascript.html",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "0b20196bb008d9e9"
+            ]
+        ]
+    },
+    {
+        "id": "0b20196bb008d9e9",
+        "type": "change",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "text/html",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "abcdwwdfrgewwer",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "cbf847557b57b971",
+                "500123d5bae60177"
+            ]
+        ]
+    },
+    {
+        "id": "b98593e801e25db3",
+        "type": "http response",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/html"
+        },
+        "x": 460,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "cbf847557b57b971",
+        "type": "debug",
+        "z": "cd859e7402ef25f2",
+        "d": true,
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4f214d0aa807f090",
+        "type": "http in",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "url": "/test",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 280,
+        "wires": [
+            [
+                "0b20196bb008d9e9"
+            ]
+        ]
+    },
+    {
+        "id": "500123d5bae60177",
+        "type": "template",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<head>\n</head>\n<body>\n    <h1>    \n    I am showing you this {{payload}}\n    </h1>\n    <p id=\"a\"> how are you </p>\n    <p id=\"b\"> this is b </p>\n    \n    <script>\n        console.log(\"wait...\");\n    </script>\n    <script>\n        var counter = 0 ;\n\n\n        function ajax() {\n            var xhr = new XMLHttpRequest();\n            xhr.onreadystatechange = function() {\n                if (this.readyState == 4 && this.status == 200) {\n                    document.getElementById(\"b\").innerHTML = counter;\n                    counter = counter + 1;\n                }\n            };\n            xhr.open(\"GET\", \"/test2\", true);\n            xhr.send();\n        }\n\n        setInterval(ajax, 3000);\n        //window.addEventListener('load', getReadings);\n       \n    </script>\n</body>",
+        "output": "str",
+        "x": 280,
+        "y": 440,
+        "wires": [
+            [
+                "b98593e801e25db3"
+            ]
+        ]
+    },
+    {
+        "id": "a36afd55371396db",
+        "type": "http in",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "url": "/test2",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "bb49a78e5de5a898",
+                "b104e78e8f04632c"
+            ]
+        ]
+    },
+    {
+        "id": "bb49a78e5de5a898",
+        "type": "delay",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 80,
+        "wires": [
+            [
+                "057b096dda92b430",
+                "b104e78e8f04632c"
+            ]
+        ]
+    },
+    {
+        "id": "057b096dda92b430",
+        "type": "http response",
+        "z": "cd859e7402ef25f2",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "readyState": "4"
+        },
+        "x": 500,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b104e78e8f04632c",
+        "type": "debug",
+        "z": "cd859e7402ef25f2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6da59661a59d8c27",
+        "type": "comment",
+        "z": "cd859e7402ef25f2",
+        "name": "server (AJAX)",
+        "info": "",
+        "x": 130,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "9702440685e86629",
+        "type": "comment",
+        "z": "cd859e7402ef25f2",
+        "name": "server to (AJAX) client",
+        "info": "",
+        "x": 160,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "73f5dad26f2a3369",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/asset/lcd.woff2",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "59163d29543bc378"
+            ]
+        ]
+    },
+    {
+        "id": "d7269ed10189edd2",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/html"
+        },
+        "x": 680,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "dc72cfaca60f6d1d",
+        "type": "debug",
+        "z": "24498720fb0cdd47",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "59163d29543bc378",
+        "type": "file in",
+        "z": "24498720fb0cdd47",
+        "name": "font",
+        "filename": "/Users/maurice/.node-red/asset/lcd.woff2",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 290,
+        "y": 80,
+        "wires": [
+            [
+                "d7269ed10189edd2",
+                "dc72cfaca60f6d1d"
+            ]
+        ]
+    },
+    {
+        "id": "2d3ad25cac4cabd4",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/add",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 780,
+        "wires": [
+            [
+                "3620a32db86380c2",
+                "614b365d0372022d"
+            ]
+        ]
+    },
+    {
+        "id": "e7aa43a75407c0d8",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/html"
+        },
+        "x": 680,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "3620a32db86380c2",
+        "type": "template",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"en-US\">\n\n<head>\n    <!-- Responsive -->\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\" />\n    <!-- Meta Tags required for Progressive Web App -->\n    <meta name=\"apple-mobile-web-app-status-bar\" content=\"#aa7700\" />\n    <meta name=\"theme-color\" content=\"black\" />\n    <!-- Manifest File link -->\n    <link rel=\"manifest\" href=\"manifest.json\">\n    \n    <title> PWA </title>\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"/icons/favicon.ico\" />\n</head>\n    <style>\n        @font-face {\n            font-family: \"lcd\";\n            src: url(\"./asset/lcd.svg#ITCMedeaW01-ExtraBold\") format(\"svg\");\n            font-weight: normal;\n            font-style: normal;\n        }\n    </style>\n<body>\n    <h1 id=\"a\" style=\"font-style: normal; font-family: lcd; font-size: 30px; font-weight: normal; \"> \n    </h1>\n    <h1 id=\"b\" style=\"font-style: normal; font-family: lcd; font-size: 150px; font-weight: normal; \">    \n    Timer Started\n    </h1>\n\n    <script>\n        var now = new Date();\n        document.getElementById(\"a\").innerHTML = now;\n        var counter = 0 ;\n        function add(){\n            counter ++;\n            document.getElementById(\"b\").innerHTML = counter;\n        }\n        setInterval(add, 1000); \n    </script>\n\n    <script type = \"text/javascript\">\n\twindow.addEventListener('load', () => {registerSW();});\n\t// Register the Service Worker\n\tasync function registerSW() {\n\tif ('serviceWorker' in navigator) {\n\t\ttry {\n\t\tawait navigator.serviceWorker.register('./worker.js', {scope: '/'});}\n\t\tcatch (e) {console.log('SW registration failed');}\n\t}}\n    </script>\n</body>\n</html>",
+        "output": "str",
+        "x": 300,
+        "y": 780,
+        "wires": [
+            [
+                "e7aa43a75407c0d8"
+            ]
+        ]
+    },
+    {
+        "id": "614b365d0372022d",
+        "type": "debug",
+        "z": "24498720fb0cdd47",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "71b0ef3b9f3d6383",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/asset/lcd.woff",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 20,
+        "wires": [
+            [
+                "6b5612cb933325c6"
+            ]
+        ]
+    },
+    {
+        "id": "b51d945c341bfac5",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/html"
+        },
+        "x": 680,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "a8ed1e224b791128",
+        "type": "debug",
+        "z": "24498720fb0cdd47",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "6b5612cb933325c6",
+        "type": "file in",
+        "z": "24498720fb0cdd47",
+        "name": "font",
+        "filename": "/Users/maurice/.node-red/asset/lcd.woff",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 290,
+        "y": 40,
+        "wires": [
+            [
+                "b51d945c341bfac5",
+                "a8ed1e224b791128"
+            ]
+        ]
+    },
+    {
+        "id": "c8012e62f4a832f6",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/asset/lcd.svg",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "3b99bf973b967bf4"
+            ]
+        ]
+    },
+    {
+        "id": "7d9fd95252c81899",
+        "type": "debug",
+        "z": "24498720fb0cdd47",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3b99bf973b967bf4",
+        "type": "file in",
+        "z": "24498720fb0cdd47",
+        "name": "font",
+        "filename": "/Users/maurice/.node-red/asset/lcd.svg",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "7d9fd95252c81899",
+                "b5325e1220acac17"
+            ]
+        ]
+    },
+    {
+        "id": "d45f66f403037a6c",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/asset/lcd.otf",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "b9be03d227eb0dd6"
+            ]
+        ]
+    },
+    {
+        "id": "05477ac738b4a7cf",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/html"
+        },
+        "x": 680,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "588ffae342cb508a",
+        "type": "debug",
+        "z": "24498720fb0cdd47",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b9be03d227eb0dd6",
+        "type": "file in",
+        "z": "24498720fb0cdd47",
+        "name": "font",
+        "filename": "/Users/maurice/.node-red/asset/lcd.otf",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "05477ac738b4a7cf",
+                "588ffae342cb508a"
+            ]
+        ]
+    },
+    {
+        "id": "b5325e1220acac17",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "65958afa4a68a373",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/asset/lcd.ttf",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "4eac6a98f9b26e4d"
+            ]
+        ]
+    },
+    {
+        "id": "77eea82959d41040",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/html"
+        },
+        "x": 680,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fe49a11a6e435790",
+        "type": "debug",
+        "z": "24498720fb0cdd47",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "4eac6a98f9b26e4d",
+        "type": "file in",
+        "z": "24498720fb0cdd47",
+        "name": "font",
+        "filename": "/Users/maurice/.node-red/asset/lcd.ttf",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "77eea82959d41040",
+                "fe49a11a6e435790"
+            ]
+        ]
+    },
+    {
+        "id": "889258222254d792",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/style.css",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 300,
+        "wires": [
+            [
+                "847129c2c6404e63"
+            ]
+        ]
+    },
+    {
+        "id": "7febb009815becb8",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/script.js",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "cb9e5da583d8528f"
+            ]
+        ]
+    },
+    {
+        "id": "26476ec95770c451",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/asset/favicon.ico",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 380,
+        "wires": [
+            [
+                "2c857e1e0472197b"
+            ]
+        ]
+    },
+    {
+        "id": "d242a5978f6b339f",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/manifest.json",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "a7c1ac94642e73ef"
+            ]
+        ]
+    },
+    {
+        "id": "6558f4b241d0c4d4",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/worker.js",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 460,
+        "wires": [
+            [
+                "cf8d3f5306aef101"
+            ]
+        ]
+    },
+    {
+        "id": "db05f9777b27be98",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/css"
+        },
+        "x": 680,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "847129c2c6404e63",
+        "type": "template",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<header>\n</header>\n    <style>\n        @font-face {\n            font-family: \"lcd\";\n            src: url(\"./asset/lcd.svg#ITCMedeaW01-ExtraBold\") format(\"svg\");\n            font-weight: normal;\n            font-style: normal;\n        }\n    </style>\n<body>\n    <h1 id=\"a\" style=\"font-style: normal; font-family: lcd; font-size: 30px; font-weight: normal; \"> \n    </h1>\n    <h1 id=\"b\" style=\"font-style: normal; font-family: lcd; font-size: 150px; font-weight: normal; \">    \n    Timer Started\n    </h1>\n\n    <script>\n        var now = new Date();\n        document.getElementById(\"a\").innerHTML = now;\n        var counter = 0 ;\n        function add(){\n            counter ++;\n            document.getElementById(\"b\").innerHTML = counter;\n        }\n        setInterval(add, 1000); \n    </script>\n</body>\n",
+        "output": "str",
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "db05f9777b27be98"
+            ]
+        ]
+    },
+    {
+        "id": "39a5d8023b947f1a",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/javascript"
+        },
+        "x": 680,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "cb9e5da583d8528f",
+        "type": "template",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<header>\n</header>\n    <style>\n        @font-face {\n            font-family: \"lcd\";\n            src: url(\"./asset/lcd.svg#ITCMedeaW01-ExtraBold\") format(\"svg\");\n            font-weight: normal;\n            font-style: normal;\n        }\n    </style>\n<body>\n    <h1 id=\"a\" style=\"font-style: normal; font-family: lcd; font-size: 30px; font-weight: normal; \"> \n    </h1>\n    <h1 id=\"b\" style=\"font-style: normal; font-family: lcd; font-size: 150px; font-weight: normal; \">    \n    Timer Started\n    </h1>\n\n    <script>\n        var now = new Date();\n        document.getElementById(\"a\").innerHTML = now;\n        var counter = 0 ;\n        function add(){\n            counter ++;\n            document.getElementById(\"b\").innerHTML = counter;\n        }\n        setInterval(add, 1000); \n    </script>\n</body>\n",
+        "output": "str",
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "39a5d8023b947f1a"
+            ]
+        ]
+    },
+    {
+        "id": "040b7137ef7b8e21",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "image/x-icon",
+        "statusCode": "200",
+        "headers": {
+            "Content": "image/x-icon"
+        },
+        "x": 690,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8fbc339bed825c37",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "application/manifest+json"
+        },
+        "x": 680,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "a7c1ac94642e73ef",
+        "type": "template",
+        "z": "24498720fb0cdd47",
+        "name": "manifest.json",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n\t\"name\":\"PWA Tutorial\",\n\t\"short_name\":\"PWA\",\n\t\"start_url\":\"/index\",\n\t\"display\":\"standalone\",\n\t\"background_color\":\"#5900b3\",\n\t\"theme_color\":\"black\",\n\t\"scope\": \"/\",\n\t\"description\":\"This is a PWA tutorial.\",\n\t\"icons\":[\n\t{\n\t\"src\":\"./asset/icon-192x192.png\",\t\t\t\t\t\n\t\"sizes\":\"192x192\",\n\t\"type\":\"image/png\"\n\t},\n\t{\n\t\"src\":\"./asset/icon-512x512.png\",\n\t\"sizes\":\"512x512\",\n\t\"type\":\"image/png\"\n\t}\n]\n}\n",
+        "output": "json",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "8fbc339bed825c37"
+            ]
+        ]
+    },
+    {
+        "id": "86ba5d7b1d959643",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/javascript"
+        },
+        "x": 680,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "cf8d3f5306aef101",
+        "type": "template",
+        "z": "24498720fb0cdd47",
+        "name": "worker.js",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "javascript",
+        "syntax": "mustache",
+        "template": "const assets = [\"/pwa/\", \"/pwa/index.html\", \"https://pyscript.net/alpha/pyscript.css\", \"https://pyscript.net/alpha/pyscript.js\", \"/pwa/src/main.py\", \"/pwa/src/main.js\"];\n\nconsole.log(\"maurice file sw.js FULL ASSETS\"); \n\n\nself.addEventListener(\"install\", installEvent => {\n    console.log(\"EVENT INSTALL\");\n    installEvent.waitUntil(caches.open(\"pwa\")\n    .then((cache) => {return cache.addAll(assets);}).catch((err) => console.log(\"Error INSTALL\", err)));\n    console.log(\"INSTALL COMPLETED\");\n    \n});\n\nself.addEventListener(\"fetch\", fetchEvent => {\n    console.log(\"EVENT FETCH\");\n    fetchEvent.respondWith(caches.match(fetchEvent.request).then(res=>{return res || fetch(fetchEvent.request)}));\n    console.log(\"FETCH COMPLETED\");\n\n});\n\n",
+        "output": "str",
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "86ba5d7b1d959643"
+            ]
+        ]
+    },
+    {
+        "id": "04ab71a48078a31a",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/index",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 560,
+        "wires": [
+            [
+                "9b98c142fa7790a4"
+            ]
+        ]
+    },
+    {
+        "id": "67884bbd537cd276",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "Content": "text/html"
+        },
+        "x": 700,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "9b98c142fa7790a4",
+        "type": "template",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"en-US\">\n\n<head>\n    <!-- Responsive -->\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\" />\n    <!-- Meta Tags required for Progressive Web App -->\n    <meta name=\"apple-mobile-web-app-status-bar\" content=\"#aa7700\" />\n    <meta name=\"theme-color\" content=\"black\" />\n    <!-- Manifest File link -->\n    <link rel=\"manifest\" href=\"manifest.json\">\n    \n    <title> PWA </title>\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"/asset/favicon.ico\" />\n</head>\n    <style>\n        @font-face {\n            font-family: \"lcd\";\n            src: url(\"./asset/lcd.svg#ITCMedeaW01-ExtraBold\") format(\"svg\");\n            font-weight: normal;\n            font-style: normal;\n        }\n    </style>\n<body>\n    <h1 id=\"a\" style=\"font-style: normal; font-family: lcd; font-size: 30px; font-weight: normal; \"> \n    </h1>\n    <h1 id=\"b\" style=\"font-style: normal; font-family: lcd; font-size: 150px; font-weight: normal; \">    \n    Timer Started\n    </h1>\n\n    <script>\n        var now = new Date();\n        document.getElementById(\"a\").innerHTML = now;\n        var counter = 0 ;\n        function add(){\n            counter ++;\n            document.getElementById(\"b\").innerHTML = counter;\n        }\n        setInterval(add, 1000); \n    </script>\n\n\n\n    <script type = \"text/javascript\">\n\twindow.addEventListener('load', () => {registerSW();});\n\t// Register the Service Worker\n\tasync function registerSW() {\n\tif ('serviceWorker' in navigator) {\n\t\ttry {\n\t\tawait navigator.serviceWorker.register('./worker.js', {scope: '/'});}\n\t\tcatch (e) {\n            var msg = `Service Worker Error (${e})`;\n            console.log(msg);\n            console.log('SW registration failed');}\n\t}}\n    </script>\n</body>\n</html>",
+        "output": "str",
+        "x": 360,
+        "y": 640,
+        "wires": [
+            [
+                "67884bbd537cd276"
+            ]
+        ]
+    },
+    {
+        "id": "2c857e1e0472197b",
+        "type": "file in",
+        "z": "24498720fb0cdd47",
+        "name": "favicon.ico",
+        "filename": "/Users/maurice/.node-red/asset/favicon.ico",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": true,
+        "x": 310,
+        "y": 380,
+        "wires": [
+            [
+                "040b7137ef7b8e21"
+            ]
+        ]
+    },
+    {
+        "id": "eb5a910540a96cfb",
+        "type": "http response",
+        "z": "24498720fb0cdd47",
+        "name": "image/png",
+        "statusCode": "200",
+        "headers": {
+            "Content": "image/png"
+        },
+        "x": 690,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "7636d22cd67d7cdc",
+        "type": "file in",
+        "z": "24498720fb0cdd47",
+        "name": "icon-192x192.png",
+        "filename": "/Users/maurice/.node-red/asset/icon-192x192.png",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": true,
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "eb5a910540a96cfb"
+            ]
+        ]
+    },
+    {
+        "id": "c3237fdf02559b22",
+        "type": "http in",
+        "z": "24498720fb0cdd47",
+        "name": "",
+        "url": "/asset/icon-192x192.png",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 500,
+        "wires": [
+            [
+                "7636d22cd67d7cdc"
+            ]
+        ]
+    }
+]
