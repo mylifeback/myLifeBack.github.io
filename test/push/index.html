@@ -46,36 +46,24 @@
             navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
                 console.log(registration);  
-                fetch ('https://127.0.0.1:1880/publickey')
-                // , {
-                //                 method: 'get',
-                //                 headers: {
-                //                     "content-type": "application/json",
-                //                     "Access-Control-Request-Private-Network": "true",
-                //                 },
-                //                 body: JSON.stringify({"abc": 123, "def": 456}),
-                //             })
-                            .then ((response) => {
-                                console.log (response.body);
-                                return response;
-                            })
-                .then ((response) => {
-                    registration.pushManager.subscribe ({
-                    userVisibleOnly: true,
-                    applicationServerKey: response
-                })
+                const response = await fetch ('https://127.0.0.1:1880/publickey');
+                const txt = await response.text();
+                console.log (txt);
+
+                registration.pushManager.subscribe ({
+                userVisibleOnly: true,
+                applicationServerKey: txt,
                 });
-                                  
+           
                 registration.pushManager
                     .getSubscription()
-                        .then ((subscription) => {
-                            console.log (subscription);
-                            console.log (subscription.endpoint);
-                            console.log (subscription.expirationTime);
-                            console.log (subscription.options);
-                            const str = JSON.stringify({subscription});
-                            console.log (str);
-                           
+                    .then ((subscription) => {
+                    console.log (subscription);
+                    console.log (subscription.endpoint);
+                    console.log (subscription.expirationTime);
+                    console.log (subscription.options);
+                    const str = JSON.stringify({subscription});
+                    console.log (str); 
                     });
             });
 
