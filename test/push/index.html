@@ -52,19 +52,20 @@
                     .then ((txt) => {
                         console.log ('public key successfully received' + txt);
                         
-                        if (registration.pushManager.getSubscription()) {
-                            registration.pushManager.getSubscription()
-                            .then ((subscription) => {
-                                console.log (subscription);
+                        const sub = registration.pushManager.getSubscription();
+                        if (sub) {
+                            (sub) => {
+                                console.log (sub);
                                 subscription
-                                .unsubscribe()
-                                .then ((successful) => {
-                                    console.log ('unscribed & successful');
-                                })
-                                .catch ((e) => {
-                                    console.log ('unsuccessful');
-                                })
-                            })
+                                .unsubscribe();
+                                console.log ('unsubscribed');
+                                // .then ((successful) => {
+                                //     console.log ('unscribed & successful');
+                                // })
+                                // .catch ((e) => {
+                                //     console.log ('unsuccessful');
+                                // })
+                            };
                         }
                         
                         console.log ('needs new subscribe');
