@@ -55,6 +55,7 @@
                         if (registration.pushManager.getSubscription()) {
                             registration.pushManager.getSubscription()
                             .then ((subscription) => {
+                                console.log (subscription);
                                 subscription
                                 .unsubscribe()
                                 .then ((successful) => {
