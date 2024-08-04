@@ -52,14 +52,25 @@
                     .then ((txt) => {
                         console.log ('public key successfully received' + txt);
                         
-                        if (!registration.pushManager.getSubscription()) {
-                            console.log ('needs new subscribe');
-                            registration.pushManager.subscribe({
-                            userVisibleOnly: true,
-                            applicationServerKey: txt,
+                        if (registration.pushManager.getSubscription()) {
+                            registration.pushManager.getSubscription()
+                            .then ((subscription) => {
+                                subscription
+                                .unsubscribe()
+                                .then ((successful) => {
+                                    console.log ('unscribed & successful');
+                                })
+                                .catch ((e) => {
+                                    console.log ('unsuccessful');
+                                })
                             })
                         }
                         
+                        console.log ('needs new subscribe');
+                        registration.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: txt,
+                        })
 
                         registration.pushManager
                         .getSubscription()
