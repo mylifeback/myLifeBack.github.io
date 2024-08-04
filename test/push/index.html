@@ -34,6 +34,10 @@
                                 body: JSON.stringify({"abc": 123, "def": 456}),
                             })
                             .then ((response) => {
+                                response.text()
+                                .then ((txt) => {
+                                    console.log (txt);
+                                })
                                 console.log (response);
                             });
             }
