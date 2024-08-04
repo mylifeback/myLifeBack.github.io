@@ -46,14 +46,15 @@
             navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
                 console.log(registration);  
-                fetch ('https://127.0.0.1:1880/register', {
-                                method: 'post',
-                                headers: {
-                                    "content-type": "application/json",
-                                    "Access-Control-Request-Private-Network": "true",
-                                },
-                                body: JSON.stringify({"abc": 123, "def": 456}),
-                            })
+                fetch ('https://127.0.0.1:1880/publickey')
+                // , {
+                //                 method: 'get',
+                //                 headers: {
+                //                     "content-type": "application/json",
+                //                     "Access-Control-Request-Private-Network": "true",
+                //                 },
+                //                 body: JSON.stringify({"abc": 123, "def": 456}),
+                //             })
                             .then ((response) => {
                                 console.log (response.body);
                                 return response;
