@@ -46,10 +46,13 @@
             navigator.serviceWorker.register('serviceworker.js')
             .then((registration) => {
                 console.log(registration);  
-                const response = await fetch ('https://127.0.0.1:1880/publickey');
-                const txt = await response.text();
-                console.log (txt);
-
+                fetch ('https://127.0.0.1:1880/publickey')
+                .then ((response) => {
+                    response.text()
+                    .then ((txt) => {
+                        console.log (txt);
+                    })
+                });
                 registration.pushManager.subscribe ({
                 userVisibleOnly: true,
                 applicationServerKey: txt,
