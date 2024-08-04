@@ -51,12 +51,14 @@
                     response.text()
                     .then ((txt) => {
                         console.log (txt);
+                        return registration;
                     })
-                });
+                })
+                .then ((registration) => {
                 registration.pushManager.subscribe ({
                 userVisibleOnly: true,
                 applicationServerKey: txt,
-                });
+                })});
            
                 registration.pushManager
                     .getSubscription()
