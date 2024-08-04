@@ -27,7 +27,7 @@
                 new Notification ("MESSAGE HEAD", {body: e});
             }
 
-            function pushMessage (m){
+            function pushMessage (){
                      fetch ('https://127.0.0.1:1880/push', {
                                 method: 'post',
                                 headers: {
@@ -55,7 +55,7 @@
                                 body: JSON.stringify({"abc": 123, "def": 456}),
                             })
                             .then ((response) => {
-                                console.log (response);
+                                console.log ('public key   '+ response);
                                 return response;
                             })
                 .then ((response) => {
