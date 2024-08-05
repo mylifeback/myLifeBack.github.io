@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="./src/aframe.160.min.js"></script>
+    <script src="./src/mouse-manipulation.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
+  </head>
+
+  <body>
+
+    <a-scene>
+          <!-- cursor configuration. -->
+          <a-entity cursor="rayOrigin: mouse"
+                  raycaster="objects: .draggable"
+                  mouse-manipulation>
+          </a-entity>
+
+          <!-- object to be manipulated-->
+          <a-box position="0 0-2" color="red"
+                class="draggable">
+          </a-box>
+    </a-scene>
+
+
+
+
+  </body>
+</html>
