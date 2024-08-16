@@ -1,0 +1,12 @@
+
+WORKS:
+
+tk.alarmVol (12, true, true);
+const 
+
+
+
+NOT WORK:
+
+performTask
+vibrate
