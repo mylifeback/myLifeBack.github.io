@@ -2,7 +2,7 @@
 WORKS:
 
 tk.alarmVol (12, true, true);
-const 
+const (const not working in javascriptlet)
 
 
 
@@ -10,3 +10,11 @@ NOT WORK:
 
 performTask
 vibrate
+
+
+
+Javascriptlet WORKS:
+do not use setLocal (unless AUTOEXIT disabled)
+  setLocal / local - only in webview (mixed in HTML)
+  with or without % 
+at least 3 letters to form a variable name (even 1 CAPITAL letter makes it global)
