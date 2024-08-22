@@ -16,7 +16,7 @@
 </style>
 
 <di>
-  TITLE
+ body
 </di>
 <div id = "ele1" >
 
@@ -36,5 +36,11 @@ task
   const ele2 = document.getElementById("ele2");
   const but1 = document.getElementById("button1");
   //setLocal ("beep", "on");
-  but1.onclick = tk.performTask ("beep", 1, "string1", "string2", "stringReturn", false, false, "abc/def", false);
+  ele1.innerHTML = "original element 1";
+  ele2.innerHTML = "original element 2";
+  function buttonPressed () {
+    const result = tk.performTask("beep", 1, "string1", "string2", "stringReturn", false, false, "abc/def", false);
+    ele1.innerHTML = result;
+  }
+  but1.addEventListener ("click", buttonPressed);
 </script>
