@@ -38,14 +38,14 @@ task
   //setLocal ("beep", "on");
   ele1.innerHTML = "original element 1";
   ele2.innerHTML = "original element 2";
+  
   function buttonPressed () {
     ele1.innerHTML = "intermediate";
-    //const result = tk.performTask("beep", 1, "string1", "string2", "stringReturn", false, false, "abc/def", false);
-    //const result = tk.performTask("beep",1);
-    //ele1.innerHTML = result;
+    
     tk.flash("456");
     tk.performTask("beep",5);
     const result = tk.vibrate (1000);
   }
+  
   but1.addEventListener ("click", buttonPressed);
 </script>
