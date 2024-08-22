@@ -9,6 +9,8 @@
 
   #button1 {
     border: solid red 1px;
+    width: 100px;
+    height: 50px;
   }
 
 </style>
@@ -26,12 +28,12 @@
 </div>
 
 <button id = "button1">
-
+task
 </button>
 
 <script>
   const ele1 = document.getElementById("ele1");
   const ele2 = document.getElementById("ele2");
   const but1 = document.getElementById("button1");
-
+  but1.onclick = tk.performTask ("web", 2, "string1", "string2", "stringReturn", false, false, "abc/def", false);
 </script>
