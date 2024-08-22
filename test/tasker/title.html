@@ -41,7 +41,9 @@
     ele1.innerHTML = "intermediate";
     
     tk.flash("456");
-    tk.performTask("beep",5);
+    //tk.performTask("beep",5);
+    ele1.innerHTML = typeof performTask;
+    ele2.innerHTML = typeof tk.performTask;
     const result = tk.vibrate (1000);
   }
   
