@@ -118,6 +118,24 @@
 
 
 
+      const rightloader = new VTKLoader();
+        rightloader.load("./file/right.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+
+          const mesh = new THREE.Mesh(geometry, skinmaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Right Visible")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              renderer.render(scene, camera);
+            });
+        });
+
 
 
 
@@ -134,7 +152,7 @@
         controls.maxDistance = 500;
         controls.rotateSpeed = 2.0;
         controls.zoomSpeed = 2;
-        controls.panSpeed = 0;
+        controls.panSpeed = 1.5;
 
         stats = new Stats();
         document.body.appendChild(stats.dom);
