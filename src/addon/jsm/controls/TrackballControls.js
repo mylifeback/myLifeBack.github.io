@@ -51,6 +51,8 @@ class TrackballControls extends EventDispatcher {
 
 		this.mouseButtons = { LEFT: MOUSE.ROTATE, MIDDLE: MOUSE.DOLLY, RIGHT: MOUSE.PAN };
 
+		const self = this;
+
 		// internals
 
 		this.target = new Vector3();
@@ -458,7 +460,8 @@ class TrackballControls extends EventDispatcher {
 
 				onMouseMove( event );
 
-			}
+			};
+			self.update();
 
 		}
 
@@ -532,6 +535,8 @@ class TrackballControls extends EventDispatcher {
 
 			window.addEventListener( 'keydown', keydown );
 
+			self.update();
+
 		}
 
 		function onMouseDown( event ) {
@@ -596,7 +601,10 @@ class TrackballControls extends EventDispatcher {
 
 				_panEnd.copy( getMouseOnScreen( event.pageX, event.pageY ) );
 
-			}
+			};
+
+			self.update();
+
 
 		}
 
@@ -637,6 +645,8 @@ class TrackballControls extends EventDispatcher {
 
 			scope.dispatchEvent( _startEvent );
 			scope.dispatchEvent( _endEvent );
+
+			self.update();
 
 		}
 
@@ -695,6 +705,8 @@ class TrackballControls extends EventDispatcher {
 					break;
 
 			}
+
+			self.update();
 
 		}
 
