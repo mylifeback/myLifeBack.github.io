@@ -95,7 +95,7 @@
           opacity: 0.2
         });
         const skinloader = new VTKLoader();
-        skinloader.load("./file/skin.vtk", function (geometry) {
+        skinloader.load("https://crawford1903.mynetgear.com:1234/cavernous/file/skin.vtk", function (geometry) {
           geometry.computeVertexNormals();
           const mesh = new THREE.Mesh(geometry, skinmaterial);
           scene.add(mesh);
