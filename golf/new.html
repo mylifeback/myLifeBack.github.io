@@ -71,6 +71,17 @@
 				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
+				
+				// putter
+                                const puttermaterial = new THREE.MeshLambertMaterial({
+                                        wireframe: false,
+                                        side: THREE.FrontSide,
+                                        color: 0x0000ff,
+                                        });
+                                const puttergeometry = new THREE.SphereGeometry (0.047);
+                                const putter = new THREE.Mesh(puttergeometry, puttermaterial);
+                                scene.add(putter);
+
 
 				// ball
                                 const material = new THREE.MeshLambertMaterial({
