@@ -22,7 +22,7 @@
 			}
 		</script> -->
 
-        <script type="importmap">
+        <!-- <script type="importmap">
             {
               "imports": {
                 "three": "./src/three.js",
@@ -31,7 +31,7 @@
                 "./libs/": "./src/"
               }
             }
-          </script>
+          </script> -->
 
 		<script type="module">
 
@@ -40,7 +40,7 @@
 			import { BoxLineGeometry } from './src/BoxLineGeometry.js';
 			import { XRButton } from './src/XRButton.js';
 			import { XRControllerModelFactory } from './src/XRControllerModelFactory.js';
-			// import { RapierPhysics } from 'three/addons/physics/RapierPhysics.js';
+
 
 			import { OrbitControls } from './src/OrbitControls.js';
 
@@ -54,7 +54,7 @@
 			let count = 0;
 
 			init();
-			// await initPhysics();
+
 
 			function init() {
 
@@ -78,6 +78,17 @@
 				scene.add( light );
 
 				//
+
+                                const material = new THREE.MeshLambertMaterial({
+                                        wireframe: false,
+                                        side: THREE.SingleSide,
+                                        color: 0xffffff,
+                                        });
+
+                                const geometry = new THREE.SphereGeometry (4, 4, 4);
+                                const ball = new THREE.Mesh(geometry, material);
+                                scene.add(ball);
+
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -195,78 +206,7 @@
 
 			}
 
-			async function initPhysics() {
-
-				physics = await RapierPhysics();
-
-				{
-
-					// Floor
-
-					const geometry = new THREE.BoxGeometry( 6, 2, 6 );
-					const material = new THREE.MeshNormalMaterial( { visible: false } );
-
-					const floor = new THREE.Mesh( geometry, material );
-					floor.position.y = - 1;
-					floor.userData.physics = { mass: 0 };
-					scene.add( floor );
-
-					// Walls
-
-					const wallPX = new THREE.Mesh( geometry, material );
-					wallPX.position.set( 4, 3, 0 );
-					wallPX.rotation.z = Math.PI / 2;
-					wallPX.userData.physics = { mass: 0 };
-					scene.add( wallPX );
-
-					const wallNX = new THREE.Mesh( geometry, material );
-					wallNX.position.set( - 4, 3, 0 );
-					wallNX.rotation.z = Math.PI / 2;
-					wallNX.userData.physics = { mass: 0 };
-					scene.add( wallNX );
-
-					const wallPZ = new THREE.Mesh( geometry, material );
-					wallPZ.position.set( 0, 3, 4 );
-					wallPZ.rotation.x = Math.PI / 2;
-					wallPZ.userData.physics = { mass: 0 };
-					scene.add( wallPZ );
-
-					const wallNZ = new THREE.Mesh( geometry, material );
-					wallNZ.position.set( 0, 3, - 4 );
-					wallNZ.rotation.x = Math.PI / 2;
-					wallNZ.userData.physics = { mass: 0 };
-					scene.add( wallNZ );
-
-				}
-
-				// Spheres
-
-				const geometry = new THREE.IcosahedronGeometry( 0.08, 3 );
-				const material = new THREE.MeshLambertMaterial();
-
-				spheres = new THREE.InstancedMesh( geometry, material, 800 );
-				spheres.instanceMatrix.setUsage( THREE.DynamicDrawUsage ); // will be updated every frame
-				spheres.userData.physics = { mass: 1, restitution: 1.1 };
-				scene.add( spheres );
-
-				const matrix = new THREE.Matrix4();
-				const color = new THREE.Color();
-
-				for ( let i = 0; i < spheres.count; i ++ ) {
-
-					const x = Math.random() * 4 - 2;
-					const y = Math.random() * 4;
-					const z = Math.random() * 4 - 2;
-
-					matrix.setPosition( x, y, z );
-					spheres.setMatrixAt( i, matrix );
-					spheres.setColorAt( i, color.setHex( 0xffffff * Math.random() ) );
-
-				}
-
-				physics.addScene( scene );
-
-			}
+	
 
 			//
 
