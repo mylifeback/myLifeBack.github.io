@@ -9,28 +9,20 @@
         <body>
 
                 <div id="info">
-                        <a href="https://threejs.org" target="_blank" rel="noopener">putting sim</a> xr - ball shooter
+                        <a href="https://threejs.org" target="_blank" rel="noopener">putting sim</a> putter
                 </div>
 
-                <script type="importmap">
-                        {
-                                "imports": {
-                                        "three": "../build/three.module.js",
-                                        "three/addons/": "./jsm/"
-                                }
-                        }
-                </script>
 
                 <script type="module">
 
                         import * as THREE from 'src/three.js';
 
-                        import { BoxLineGeometry } from 'three/addons/geometries/BoxLineGeometry.js';
+                        import { BoxLineGeometry } from 'src/BoxLineGeometry.js';
                         import { XRButton } from 'src/XRButton.js';
                         import { XRControllerModelFactory } from 'src/XRControllerModelFactory.js';
                        //import { RapierPhysics } from 'three/addons/physics/RapierPhysics.js';
 
-                       //import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+                       import { OrbitControls } from 'src/OrbitControls.js';
 
                         let camera, scene, renderer;
                         let controller1, controller2;
@@ -42,7 +34,7 @@
                         let count = 0;
 
                         init();
-                        await initPhysics();
+                        //await initPhysics();
 
                         function init() {
 
@@ -265,18 +257,7 @@
 
                                 if ( controller.userData.isSelecting ) {
 
-                                        physics.setMeshPosition( spheres, controller.position, count );
-
-                                        velocity.x = ( Math.random() - 0.5 ) * 2;
-                                        velocity.y = ( Math.random() - 0.5 ) * 2;
-                                        velocity.z = ( Math.random() - 9 );
-                                        velocity.applyQuaternion( controller.quaternion );
-
-                                        physics.setMeshVelocity( spheres, velocity, count );
-
-                                        if ( ++ count === spheres.count ) count = 0;
-
-                                }
+                                    
 
                         }
 
