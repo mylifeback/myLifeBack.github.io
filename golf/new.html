@@ -35,6 +35,10 @@
 
 
 			import { OrbitControls } from './src/OrbitControls.js';
+			
+			const width = 0.02;
+			const height = 0.12;
+			const depth = 0.4;
 
 			let camera, scene, renderer;
 			let controller1, controller2, line;
@@ -79,7 +83,7 @@
                                         side: THREE.FrontSide,
                                         color: 0x0000ff,
                                         });
-                                const puttergeometry = new THREE.BoxGeometry (0.02, 0.12, 0.4);
+                                const puttergeometry = new THREE.BoxGeometry (width, height, depth);
                                 const putter = new THREE.Mesh(puttergeometry, puttermaterial);
                                 
                        const position = new THREE.Vector3(4, 0, 0); 
