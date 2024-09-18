@@ -177,7 +177,11 @@
         line.add(plane);
 				controller1.add(group);
 				group.rotation.x = Math.PI/4;
+				putter.position.z = - length;
+				putter.rotation.x = tilt;
+
         plane.rotation.z = -Math.PI/2;
+				plane.rotation.y = -Math.PI/2;
 			}
 
 			function onWindowResize() {
