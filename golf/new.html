@@ -131,10 +131,12 @@
 
 				function onSelectStart() {
 					this.userData.isSelecting = true;
+					material.color = 0xff0000;
 				}
 
 				function onSelectEnd() {
 					this.userData.isSelecting = false;
+					material.color = 0xffffff;
 				}
 
 			controller1 = renderer.xr.getController( 0 );
@@ -195,7 +197,6 @@
 			}
 
 			function animate() {
-				element.innerHTML = `${camera.position.x}  ${camera.position.y}  ${controller1.position.z}`
 				renderer.render( scene, camera );
 			}
 		</script>
