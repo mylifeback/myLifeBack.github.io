@@ -37,7 +37,7 @@
 			import { OrbitControls } from './src/OrbitControls.js';
 
 			let camera, scene, renderer;
-			let controller1, controller2;
+			let controller1, controller2, line;
 			let controllerGrip1, controllerGrip2;
                         let element = document.getElementById("camera");
 
@@ -169,7 +169,13 @@
 				scene.add( controllerGrip1 );
 
 	
-				//
+				// line
+			  const linegeometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+        line = new THREE.Line( linegeometry );
+        line.name = 'line';
+        line.scale.z = 5;
+        controller1.add (line);
 
 				window.addEventListener( 'resize', onWindowResize );
 
@@ -188,7 +194,7 @@
 
 			function animate() {
 				handleController( controller1 );
-                                element.innerHTML = `${camera.position.x}  ${camera.position.y}  ${camera.position.z}`
+                                element.innerHTML = `${camera.position.x}  ${camera.position.y}  ${controller1.position.z}`
 				renderer.render( scene, camera );
 			}
 
