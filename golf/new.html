@@ -8,7 +8,6 @@
         <link rel="icon" type="images/x-icon" href="./src/favicon.ico" />
 	</head>
 	<body>
-
 		<div id="info">
 			<div>putting on green</div>
       <div id="camera"></div>
@@ -26,153 +25,111 @@
           </script> -->
 
 		<script type="module">
-
 			import * as THREE from './src/three.js';
-
 			import { BoxLineGeometry } from './src/BoxLineGeometry.js';
 			import { XRButton } from './src/XRButton.js';
 			import { XRControllerModelFactory } from './src/XRControllerModelFactory.js';
-
-
 			import { OrbitControls } from './src/OrbitControls.js';
 			
 			const width = 0.02;
 			const height = 0.12;
 			const depth = 0.4;
+			const radius = 0.0235;
+
+			
 
 			let camera, scene, renderer;
 			let controller1, controller2, line;
 			let controllerGrip1, controllerGrip2;
-                        let element = document.getElementById("camera");
-
-			let room, spheres, physics;
+			let element = document.getElementById("camera");
 			const velocity = new THREE.Vector3();
 		  
-		
-			let count = 0;
-
 			init();
-
-
 			function init() {
-
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0x505050 );
-
-                                // Camera
+        // Camera
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 50 );
 				camera.position.set( 0, 1.6, 0.5 );
-
-                                // //room
-				// room = new THREE.LineSegments(
-				// 	new BoxLineGeometry( 6, 6, 6, 10, 10, 10 ),
-				// 	new THREE.LineBasicMaterial( { color: 0x808080 } )
-				// );
-				// room.geometry.translate( 0, 3, 0 );
-				// scene.add( room );
-
-                                // Lights
+        // Lights
 				scene.add( new THREE.HemisphereLight( 0xbbbbbb, 0x888888, 3 ) );
 				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
 				
 				// putter
-                                const puttermaterial = new THREE.MeshLambertMaterial({
-                                        wireframe: false,
-                                        side: THREE.FrontSide,
-                                        color: 0x0000ff,
-                                        });
-                                const puttergeometry = new THREE.BoxGeometry (width, height, depth);
-                                const putter = new THREE.Mesh(puttergeometry, puttermaterial);
-                                
-                       const position = new THREE.Vector3(4, 0, 0); 
-                       
-                       //scene.add(putter);
-                       //putter.position.x = 0.6;
-                       
+					const puttermaterial = new THREE.MeshLambertMaterial({
+									wireframe: false,
+									side: THREE.FrontSide,
+									color: 0x0000ff,
+									});
+					const puttergeometry = new THREE.BoxGeometry (width, height, depth);
+					const putter = new THREE.Mesh(puttergeometry, puttermaterial);
+					const position = new THREE.Vector3(4, 0, 0);    
         // plane
           const planematerial = new THREE.MeshLambertMaterial({
-                                        wireframe: false,
-                                        side: THREE.FrontSide,
-                                        color: 0x00ff00,
-                                        });
-                                const planegeometry = new THREE.PlaneGeometry (1, 0.5);
-                                const plane = new THREE.Mesh(planegeometry, planematerial);
-                                
-                       
-                       
-                       //scene.add(plane);
-                       //putter.position.x = 0.6;
-                       
-        
+									wireframe: false,
+									side: THREE.FrontSide,
+									color: 0x00ff00,
+									});
+					const planegeometry = new THREE.PlaneGeometry (0.1, 0.1);
+					const plane = new THREE.Mesh(planegeometry, planematerial);
 
 				// ball
-                                const material = new THREE.MeshLambertMaterial({
-                                        wireframe: false,
-                                        side: THREE.FrontSide,
-                                        color: 0xffffff,
-                                        });
-                                const geometry = new THREE.SphereGeometry (0.047);
-                                const ball = new THREE.Mesh(geometry, material);
-                                scene.add(ball);
+						const material = new THREE.MeshLambertMaterial({
+										wireframe: false,
+										side: THREE.FrontSide,
+										color: 0xffffff,
+										});
+						const geometry = new THREE.SphereGeometry (radius);
+						const ball = new THREE.Mesh(geometry, material);
+						scene.add(ball);
 
 				// green
-                                const greenmaterial = new THREE.MeshLambertMaterial({
-                                        wireframe: false,
-                                        side: THREE.FrontSide,
-                                        color: 0x00ff00,
-                                        });
-                                const greengeometry = new THREE.PlaneGeometry (30, 20);
-                                const green = new THREE.Mesh(greengeometry, greenmaterial);
-                                green.rotation.x = -Math.PI/2;
-                                green.position.x = 0;
-                                green.position.y = 0;
-                                green.position.z = 0;
-                                scene.add(green);
+					const greenmaterial = new THREE.MeshLambertMaterial({
+									wireframe: false,
+									side: THREE.FrontSide,
+									color: 0x00ff00,
+									});
+					const greengeometry = new THREE.PlaneGeometry (30, 20);
+					const green = new THREE.Mesh(greengeometry, greenmaterial);
+					green.rotation.x = -Math.PI/2;
+					green.position.x = 0;
+					green.position.y = 0;
+					green.position.z = 0;
+					scene.add(green);
 
-                                // Renderer
+        // Renderer
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.xr.enabled = true;
 				document.body.appendChild( renderer.domElement );
-
 				// OrbitControl
 				const controls = new OrbitControls( camera, renderer.domElement );
 				controls.maxDistance = 10;
 				controls.target.y = 1.6;
-				controls.update();
-                                
-                                // XR button
+				controls.update();    
+        // XR button
 				document.body.appendChild( XRButton.createButton( renderer, { 'optionalFeatures': [ 'depth-sensing'] } ) );
-
+				
 				// controllers
 				function onSelectStart() {
-
 					this.userData.isSelecting = true;
-
 				}
-
-				function onSelectEnd() {
-
+				function onSelectEnd() 
 					this.userData.isSelecting = false;
-
 				}
 
 				controller1 = renderer.xr.getController( 0 );
 				controller1.addEventListener( 'selectstart', onSelectStart );
 				controller1.addEventListener( 'selectend', onSelectEnd );
 				controller1.addEventListener( 'connected', function ( event ) {
-
 					this.add( buildController( event.data ) );
-
 				} );
 				controller1.addEventListener( 'disconnected', function () {
-
 					this.remove( this.children[ 0 ] );
-
 				} );
 				scene.add( controller1 );
 
@@ -180,9 +137,7 @@
 				// that match what the user is holding as closely as possible. The models
 				// should be attached to the object returned from getControllerGrip in
 				// order to match the orientation of the held device.
-
 				const controllerModelFactory = new XRControllerModelFactory();
-
 				controllerGrip1 = renderer.xr.getControllerGrip( 0 );
 				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
 				scene.add( controllerGrip1 );
