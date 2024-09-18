@@ -84,9 +84,8 @@
                                 
                        const position = new THREE.Vector3(4, 0, 0); 
                        
-                       scene.add(putter);
-        
-                       putter.position.x = 0.6;
+                       //scene.add(putter);
+                       //putter.position.x = 0.6;
 
 				// ball
                                 const material = new THREE.MeshLambertMaterial({
@@ -176,6 +175,7 @@
         line.name = 'line';
         line.scale.z = 5;
         controller1.add (line);
+        controller1.add(putter);
 
 				window.addEventListener( 'resize', onWindowResize );
 
