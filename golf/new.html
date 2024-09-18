@@ -31,9 +31,9 @@
 			import { XRControllerModelFactory } from './src/XRControllerModelFactory.js';
 			import { OrbitControls } from './src/OrbitControls.js';
 			
-			const width = 0.02;
-			const height = 0.12;
-			const depth = 0.4;
+			const width = 0.01;
+			const height = 0.03;
+			const depth = 0.1;
 			const radius = 0.0235;
 
 			const length = 0.8;					// 80 cm 
@@ -80,7 +80,7 @@
 									side: THREE.FrontSide,
 									color: 0x00ff00,
 									});
-					const planegeometry = new THREE.PlaneGeometry (0.1, 0.1);
+					const planegeometry = new THREE.PlaneGeometry (height, depth);
 					const plane = new THREE.Mesh(planegeometry, planematerial);
 
 				// ball
@@ -182,6 +182,7 @@
 
         plane.rotation.z = -Math.PI/2;
 				plane.rotation.y = -Math.PI/2;
+				plane.position.z = - length;
 			}
 
 			function onWindowResize() {
