@@ -56,6 +56,8 @@
 				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
+				// resize
+				window.addEventListener( 'resize', onWindowResize );
 				
 				// putter
 					const puttermaterial = new THREE.MeshLambertMaterial({
@@ -123,8 +125,9 @@
 				}
 
 				controller1 = renderer.xr.getController( 0 );
-				controller1.addEventListener( 'selectstart', onSelectStart );
-				controller1.addEventListener( 'selectend', onSelectEnd );
+				// controller1.addEventListener( 'selectstart', onSelectStart );
+				// controller1.addEventListener( 'selectend', onSelectEnd );
+				controller1.addEventListener( 'move', onMove );
 				controller1.addEventListener( 'connected', function ( event ) {
 					this.add( buildController( event.data ) );
 				} );
@@ -142,24 +145,16 @@
 				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
 				scene.add( controllerGrip1 );
 
-	
 				// line
 			  const linegeometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
-
         line = new THREE.Line( linegeometry );
         line.name = 'line';
         line.scale.z = 5;
         controller1.add (line);
         controller1.add(putter);
-        
         controller1.add (plane);
-        plane.rotation.x = -Math.PI/2;
-
-				window.addEventListener( 'resize', onWindowResize );
-
+        plane.rotation.z = -Math.PI/2;
 			}
-
-
 
 			function onWindowResize() {
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -167,15 +162,14 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 			}
 
-			function handleController( controller ) {
+			function onMove(event) {
 			}
 
 			function animate() {
 				handleController( controller1 );
-                                element.innerHTML = `${camera.position.x}  ${camera.position.y}  ${controller1.position.z}`
+				element.innerHTML = `${camera.position.x}  ${camera.position.y}  ${controller1.position.z}`
 				renderer.render( scene, camera );
 			}
-
 		</script>
 	</body>
 </html>
