@@ -123,33 +123,47 @@
 				document.body.appendChild( XRButton.createButton( renderer, { 'optionalFeatures': [ 'depth-sensing'] } ) );
 				
 				// controllers
+
+
+
+
+
+
 				function onSelectStart() {
 					this.userData.isSelecting = true;
 				}
+
 				function onSelectEnd() {
 					this.userData.isSelecting = false;
 				}
 
-				controller1 = renderer.xr.getController( 0 );
-				// controller1.addEventListener( 'selectstart', onSelectStart );
-				// controller1.addEventListener( 'selectend', onSelectEnd );
-				controller1.addEventListener( 'move', onMove );
-				controller1.addEventListener( 'connected', function ( event ) {
-					this.add( buildController( event.data ) );
-				} );
-				controller1.addEventListener( 'disconnected', function () {
+			controller1 = renderer.xr.getController( 0 );
+			controller1.addEventListener( 'selectstart', onSelectStart );
+			controller1.addEventListener( 'selectend', onSelectEnd );
+			controller1.addEventListener( 'connected', function ( event ) {
+				this.add( buildController( event.data ) );
+			} );
+			controller1.addEventListener( 'disconnected', function () {
 					this.remove( this.children[ 0 ] );
-				} );
-				scene.add( controller1 );
+			} );
+			scene.add( controller1 );
 
-				// The XRControllerModelFactory will automatically fetch controller models
-				// that match what the user is holding as closely as possible. The models
-				// should be attached to the object returned from getControllerGrip in
-				// order to match the orientation of the held device.
-				const controllerModelFactory = new XRControllerModelFactory();
+// The XRControllerModelFactory will automatically fetch controller models
+// that match what the user is holding as closely as possible. The models
+// should be attached to the object returned from getControllerGrip in
+// order to match the orientation of the held device.
+
+			const controllerModelFactory = new XRControllerModelFactory();
+
 				controllerGrip1 = renderer.xr.getControllerGrip( 0 );
 				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
 				scene.add( controllerGrip1 );
+
+
+//
+
+
+
 
 				// line
 			  const linegeometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
