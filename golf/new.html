@@ -36,7 +36,13 @@
 			const depth = 0.4;
 			const radius = 0.0235;
 
-			
+			const length = 0.8;					// 80 cm 
+			const angle = Math.PI / 4;	// 45 degree
+			const tilt = Math.PI /3;  	// 60 degree
+			const group = new THREE.group();
+
+			const greenwidth = 30;
+			const greenlength = 20;
 
 			let camera, scene, renderer;
 			let controller1, controller2, line;
@@ -93,7 +99,7 @@
 									side: THREE.FrontSide,
 									color: 0x00ff00,
 									});
-					const greengeometry = new THREE.PlaneGeometry (30, 20);
+					const greengeometry = new THREE.PlaneGeometry (greenwidth, greenlength);
 					const green = new THREE.Mesh(greengeometry, greenmaterial);
 					green.rotation.x = -Math.PI/2;
 					green.position.x = 0;
@@ -149,10 +155,14 @@
 			  const linegeometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
         line = new THREE.Line( linegeometry );
         line.name = 'line';
-        line.scale.z = 5;
-        controller1.add (line);
-        controller1.add(putter);
-        controller1.add (plane);
+        line.scale.z = length;
+
+				
+        group.add(line);
+        line.add(putter);
+        line.add(plane);
+				controller1.add(group);
+				group.rotation.x = Math.PI/4;
         plane.rotation.z = -Math.PI/2;
 			}
 
