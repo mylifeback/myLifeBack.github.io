@@ -2,7 +2,7 @@ var staticCacheName = "skull";
 
 const assets = [
   
-  "/manifest.json"
+  "./manifest.json"
 
 ];
 
