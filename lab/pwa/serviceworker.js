@@ -1,20 +1,20 @@
 var staticCacheName = "pwa";
 
 const assets = [
-  "manifest.json",
-  "serviceworker.js",
-  "index.html",
-  "src/main.css",
-  "src/main.js",
-  "src/favicon.ico",
-  "src/icon-192x192.png",
-  "src/icon-512x512.png"
+  "/manifest.json",
+  "/serviceworker.js",
+  "/index.html",
+  "/src/main.css",
+  "/src/main.js",
+  "/src/favicon.ico",
+  "/src/icon-192x192.png",
+  "/src/icon-512x512.png"
 ];
 
 self.addEventListener("install", function(e) {
   e.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
-      return caches.addAll(assets);
+      return cache.addAll(assets);
     })
   );
 });
