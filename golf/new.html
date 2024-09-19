@@ -32,9 +32,9 @@
 			import { XRControllerModelFactory } from './src/XRControllerModelFactory.js';
 			import { OrbitControls } from './src/OrbitControls.js';
 			
-			const width = 0.01;
+			const width = 0.1;
 			const height = 0.03;
-			const depth = 0.1;
+			const depth = 0.01;
 			const radius = 0.0235;
 
 			const length = 0.8;					// 80 cm 
@@ -181,7 +181,7 @@
 				controllerGrip1.add(group);
 				//group.rotation.x = Math.PI/4;
 				putter.position.z = - length;
-				putter.rotation.x = tilt;
+				putter.rotation.z = tilt;
 
         plane.rotation.z = -Math.PI/2;
 				plane.rotation.y = -Math.PI/2;
