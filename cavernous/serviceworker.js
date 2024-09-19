@@ -10,7 +10,7 @@ const assets = [
   "./src/favicon.ico",
   "./src/icon-192x192.png",
   "./src/icon-512x512.png",
-  "https://crawford1903.mynetgear.com:1234/cavernous/file/skin.vtk",
+
   "./file/lesion.vtk"
 
 ];
