@@ -4,7 +4,7 @@ const assets = [
   
   "/manifest.json",
   "/serviceworker.js",
-  "/index.html",
+  "/index.html"
 
 ];
 
