@@ -10,7 +10,10 @@ const assets = [
   "./src/lil-gui.module.min.js",
   "./src/OrbitControls.js",
   "./src/TrackballControls.js",
-  "./src/VTKLoader.js"
+  "./src/VTKLoader.js",
+  "./src/icon-512x512.png",
+  "./src/icon-192x192.png",
+  "./file/lesion.vtk"
 ];
 
 self.addEventListener("install", function(e) {
