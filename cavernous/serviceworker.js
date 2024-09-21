@@ -14,6 +14,7 @@ const assets = [
   "./src/icon-512x512.png",
   "./src/icon-192x192.png",
   "./file/lesion.vtk",
+  "./file/skin.vtk",
   "./src/fflate.module.js"
 ];
 
