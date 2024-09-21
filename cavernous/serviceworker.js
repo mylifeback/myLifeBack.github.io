@@ -13,7 +13,8 @@ const assets = [
   "./src/VTKLoader.js",
   "./src/icon-512x512.png",
   "./src/icon-192x192.png",
-  "./file/lesion.vtk"
+  "./file/lesion.vtk",
+  "./src/fflate.module.js"
 ];
 
 self.addEventListener("install", function(e) {
