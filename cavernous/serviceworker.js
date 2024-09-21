@@ -2,7 +2,8 @@ var staticCacheName = "skull";
 
 const assets = [
   "./index.html",
-  "./src/three.js"
+  "./src/three.js",
+  "three/addons/lil-gui.module.min.js"
 
 ];
 
