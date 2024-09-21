@@ -2,6 +2,9 @@ var staticCacheName = "skull";
 
 const assets = [
   "./index.html",
+  "./src/favicon.ico",
+  "./src/main.css",
+  "./manifest.json",
   "./src/three.js",
   "./src/lil-gui.module.min.js"
 

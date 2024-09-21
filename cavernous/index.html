@@ -18,7 +18,7 @@
     <meta name="theme-color" content="black" />
     <!-- Manifest File link -->
    
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
    
     <!-- error with permission policy header: origin trial controlled feature not enabled: 'interest-cohort' -->
     <meta
@@ -51,9 +51,9 @@
       // import Stats from "three/addons/stats.module.js";
       // import { GUI } from "three/addons/lil-gui.module.min.js";
       import { GUI } from "./src/lil-gui.module.min.js";
-      import { OrbitControls } from "three/addons/OrbitControls.js";
-      import { TrackballControls } from "three/addons/TrackballControls.js";
-      import { VTKLoader } from "three/addons/VTKLoader.js";
+      import { OrbitControls } from "./src/OrbitControls.js";
+      import { TrackballControls } from "./src/TrackballControls.js";
+      import { VTKLoader } from "./src/VTKLoader.js";
       let stats, camera, controls, scene, renderer;
 
 
@@ -63,7 +63,7 @@
       async function registerSW() {
         if ("serviceWorker" in navigator) {
           try {
-            await navigator.serviceWorker.register("serviceworker.js");
+            await navigator.serviceWorker.register("./serviceworker.js");
           } catch (e) {
             console.log("SW registration failed");
           }
