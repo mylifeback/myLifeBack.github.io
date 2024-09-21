@@ -5,9 +5,12 @@ const assets = [
   "./src/favicon.ico",
   "./src/main.css",
   "./manifest.json",
+  "./serviceworker.js",
   "./src/three.js",
-  "./src/lil-gui.module.min.js"
-
+  "./src/lil-gui.module.min.js",
+  "./src/OrbitControls.js",
+  "./src/TrackballControls.js",
+  "./src/VTKLoader.js"
 ];
 
 self.addEventListener("install", function(e) {
