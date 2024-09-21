@@ -1,15 +1,7 @@
 var staticCacheName = "skull";
 
 const assets = [
-  "./index.html",
-  "./manifest.json",,
-  "./serviceworker.js",
-  "./src/main.css",
-  "./src/favicon.ico",
-  "./src/icon-192x192.png",
-  "./src/icon-512x512.png",
-
-  "./file/lesion.vtk"
+  "./index.html"
 
 ];
 
