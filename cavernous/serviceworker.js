@@ -1,7 +1,8 @@
 var staticCacheName = "skull";
 
 const assets = [
-  "./index.html"
+  "./index.html",
+  "./src/three.js"
 
 ];
 
