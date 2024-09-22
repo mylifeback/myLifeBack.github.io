@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en-UTF8">
-<head>
-    <!-- Responsive -->
+<html lang="en">
+  <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width,
-                                initial-scale=1"
+      content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"
     />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- Title -->
-    <title>PWA Tutorial</title>
-    <link rel="icon" type="images/x-icon" href="src/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="src/main.css" />
-    <script type="module" src="src/main.js"></script>
+    <link type="text/css" rel="stylesheet" href="./src/main.css" />
+    <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
+    <title>show</title>
+
+    
 
     <!-- Meta Tags required for
         Progressive Web App -->
@@ -21,44 +18,174 @@
     <meta name="theme-color" content="black" />
     <!-- Manifest File link -->
    
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
    
     <!-- error with permission policy header: origin trial controlled feature not enabled: 'interest-cohort' -->
     <meta
       http-equiv="Permissions-Policy"
       content="interest-cohort=(), user-id=()"
     />
-</head>
+  </head>
 
-<body>
-        <header>
-            <h1 class="header"> trying an app </h1>        
-        </header>
+  <body>
+    <div id="info">
+      <!-- <a href="https://threejs.org" target="_blank" rel="noopener">in progress</a> -->
+      <div>patient</div>
 
-  <div class="container">
-    
-   hello
-          </div>        
-  
+    </div>
 
-
-    <script>
-      window.addEventListener("load", () => {
-        registerSW();
-      });
-
-      // Register the Service Worker
-      async function registerSW() {
-        if ("serviceWorker" in navigator) {
-          try {
-            await navigator.serviceWorker.register("serviceworker.js");
-          } catch (e) {
-            console.log("SW registration failed");
-          }
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./src/three.js",
+          "three/addons/": "./src/",
+          "three/addons/jsm/libs/": "./src/",
+          "./libs/": "./src/"
         }
       }
     </script>
 
 
-</body>
+    <script type="module">
+      import * as THREE from "./src/three.js";
+      // import Stats from "three/addons/stats.module.js";
+      // import { GUI } from "three/addons/lil-gui.module.min.js";
+      import { GUI } from "./src/lil-gui.module.min.js";
+      import { OrbitControls } from "./src/OrbitControls.js";
+      import { TrackballControls } from "./src/TrackballControls.js";
+      import { VTKLoader } from "./src/VTKLoader.js";
+      let stats, camera, controls, scene, renderer;
+
+
+      // Register the Service Worker
+      registerSW();
+
+      async function registerSW() {
+        if ("serviceWorker" in navigator) {
+          try {
+            await navigator.serviceWorker.register("./serviceworker.js");
+          } catch (e) {
+            console.log("SW registration failed");
+          }
+        }
+      }
+
+
+      init();
+
+      function init() {
+        camera = new THREE.PerspectiveCamera(
+          60,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        camera.position.z = 300;
+        scene = new THREE.Scene();
+        scene.add(camera);
+
+        // light
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
+        scene.add(hemiLight);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(200, 200, 200);
+        scene.add(dirLight);
+        //  GUI
+        const gui = new GUI();
+
+        /* lesion --------- */
+        const lesionmaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0xff0000,
+        });
+        const lesionloader = new VTKLoader();
+        lesionloader.load("./file/lesion.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, lesionmaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: 0.5,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Lesion")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              animate();
+            });
+          animate()
+        });
+
+
+        /* skin ----------- */
+        const skinmaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0x00ff00,
+          transparent: true,
+          opacity: 0.2
+        });
+        const skinloader = new VTKLoader(); // https://crawford1903.mynetgear.com:1234/cavernous/file/skin.vtk
+        skinloader.load("./file/skin.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, skinmaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: 0.5,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Skin")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              animate();
+            });
+          gui
+            .add(visibilityControl, "opacity", 0, 1, 0.01)
+            .name("Skin Opacity")
+            .onChange(function () {
+              skinmaterial.opacity = visibilityControl.opacity;
+              animate();
+            });
+          animate()
+        });
+
+        // renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+  
+        controls = new TrackballControls(camera, renderer.domElement);
+        controls.minDistance = 100;
+        controls.maxDistance = 500;
+        controls.rotateSpeed = 2.0;
+        controls.zoomSpeed = 2;
+        controls.panSpeed = 0.8;
+        // stats = new Stats();
+        // document.body.appendChild(stats.dom);
+
+        controls.addEventListener('change', animate);
+        window.addEventListener("resize", onWindowResize);
+      }
+
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        controls.handleResize();
+        animate();
+      }
+
+      function animate() {
+        // stats.update();
+        renderer.render(scene, camera);
+      }
+
+
+    </script>
+  </body>
 </html>

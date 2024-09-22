@@ -1,14 +1,21 @@
-var staticCacheName = "pwa";
+var staticCacheName = "skull";
 
 const assets = [
-  "/manifest.json",
-  "/serviceworker.js",
-  "/index.html",
-  "/src/main.css",
-  "/src/main.js",
-  "/src/favicon.ico",
-  "/src/icon-192x192.png",
-  "/src/icon-512x512.png"
+  "./index.html",
+  "./src/favicon.ico",
+  "./src/main.css",
+  "./manifest.json",
+  "./serviceworker.js",
+  "./src/three.js",
+  "./src/lil-gui.module.min.js",
+  "./src/OrbitControls.js",
+  "./src/TrackballControls.js",
+  "./src/VTKLoader.js",
+  "./src/icon-512x512.png",
+  "./src/icon-192x192.png",
+  "./file/lesion.vtk",
+  "./file/skin.vtk",
+  "./src/fflate.module.js"
 ];
 
 self.addEventListener("install", function(e) {
