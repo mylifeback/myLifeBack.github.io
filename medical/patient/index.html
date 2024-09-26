@@ -7,7 +7,6 @@
       content="width=device-width, user-scalable=yes, minimum-scale=1.0"
     />
     <link rel="icon" type="images/x-icon" href="favicon.ico" />
-
     <title>Information for Patients</title>
     <meta name="description" content="various pictures for patients" />
 
@@ -18,71 +17,24 @@
         padding: 3px;
       }
     </style>
-
   </head>
 
-  <body>
-    <!-- <span class="container">
-      <a href="vascular/index.html"> vascular </a>
-    </span>
+  <body></body>
+          <script>
+            const list = [
+              ["vascular"  , "vascular/index.html"],
+              ["tumour", "tumour/index.html"],
+              ["spine", "spine/index.html"],
+              ["others", "others/index.html"]
 
-    <span class="container">
-      <a href="tumour/index.html"> tumour </a>
-    </span>
+          ]
 
-    <span class="container">
-      <a href="others/index.html"> others </a>
-    </span>
+            for (const [label, link] of list) {
+              const element = document.createElement("span");
+              element.class = "container";
+              element.innerHTML = `<a href=${link}> ${label} </a>`
+              document.body.append(element);
+            }
 
-    <span class="container">
-      <a href="spine/index.html">spine </a>
-    </span>
-
-    <span class="container">
-      <a href="05_dissection/index.html"> </a>
-    </span>
-
-    <span class="container">
-      <a href="06_snellen/index.html"> </a>
-    </span>
-
-    <span class="container">
-      <a href="http://spinecarehk.com/index_files/cervical_instability.htm">
-       
-      </a>
-    </span>
-
-    <span class="container">
-      <a href="01_tumour/index.html"> </a>
-    </span>
-
-    <span class="container">
-      <a href="2/index.html"> other 3 </a>
-    </span>
-
-    <span class="container">
-      <a href="2/index.html"> other 4 </a>
-    </span>
-
-    <span class="container">
-      <a href="2/index.html"> other 5 </a>
-    </span> -->
-  </body>
-  <script>
-    const list = [
-      ["vascular"  , "vascular/index.html"],
-      ["tumour", "tumour/index.html"],
-      ["spine", "spine/index.html"],
-      ["others", "others/index.html"]
-
-  ]
-
-    for (const [label, link] of list) {
-      const element = document.createElement("span");
-      element.class = "container";
-      element.innerHTML = `<a href=${link}> ${label} </a>`
-      document.body.append(element);
-    }
-
-  </script>
+          </script>
 </html>
