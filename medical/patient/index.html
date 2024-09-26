@@ -30,9 +30,8 @@
       for (const [label, link] of list) {
         const element = document.createElement("span");
         element.class = "container";
-        element.innerHTML = `
-        <a href=${link}> ${label} </a>
-        document.body.append(element);`
+        element.innerHTML = `<a href=${link}> ${label} </a>`
+        document.body.append(element);
       }
 
     </script>
