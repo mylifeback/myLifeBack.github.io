@@ -29,11 +29,10 @@
 
       for (const [label, link] of list) {
         const element = document.createElement("span");
-        const inner = document.createElement("a");
         element.class = "container";
-        inner.href = link;
-        inner.innerHTML = label;
-        element.appendChild(inner);
+
+        element.innerHTML = `
+        <a href=${link}> ${label} </a>
         document.append(element);
       }
 
