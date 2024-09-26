@@ -7,19 +7,7 @@
       content="width=device-width, user-scalable=yes, minimum-scale=1.0"
     />
     <link rel="icon" type="images/x-icon" href="favicon.ico" />
-
-
-<!--
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-    <link type="text/css" rel="stylesheet" href="../src/style.css" />
-    <script type="module" src="../src/script.js"></script>
-  -->
-
-
-    <title>Template</title>
+    <title>artery</title>
     <meta name="description" content="various pictures for patients">
 
     <style>
@@ -66,4 +54,27 @@
       </span>
 
   </body>
+
+
+              <script>
+                const list = [
+                  ["1", "1.jpg"],
+                  ["2", "2.jpg"],
+                  ["2", "3.jpg"],
+                  ["2", "4.jpg"],
+                  ["2", "5.jpg"],
+                  ["2", "6.jpg"],
+                  ["2", "7.jpg"],
+                  ["2", "8.jpg"]
+              ]
+
+                for (const [label, link] of list) {
+                  const element = document.createElement("span");
+                  element.class = "container";
+                  element.innerHTML = `<img src=${link} alt=". no other image to load"  onerror="this.style.display='none'" />`
+                  document.body.append(element);
+                }
+              </script>
+
+
 </html>
