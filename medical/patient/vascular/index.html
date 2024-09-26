@@ -7,79 +7,36 @@
       content="width=device-width, user-scalable=yes, minimum-scale=1.0"
     />
     <link rel="icon" type="images/x-icon" href="favicon.ico" />
-
-
-    <title>Information for Patients</title>
+    <title>vascular</title>
     <meta name="description" content="various pictures for patients">
 
     <style>
-        img {
-            width: 100%;
-            height: auto;
-            border: solid 1px red;
-        }
-
         a {
           font-size: 20px;
           display: block;
           padding: 3px;
         }
     </style>
-    <script>
-    </script>
   </head>
 
 
-  <body>
+  <body></body>
 
-      <span class="container">
-        <a href="fd/index.html"> flow diverter </a>
-      </span>
+  <script>
+    const list = [
+      ["dissection"  , "dissection/index.html"],
+      ["clipping", "clipping/index.html"],
+      ["coiling", "coiling/index.html"],
+      ["artery", "artery/index.html"],
+      ["flow diverter", "fd/index.html"]
+  ]
 
-      <span class="container">
-        <a href="artery/index.html"> artery </a>
-      </span>
+    for (const [label, link] of list) {
+      const element = document.createElement("span");
+      element.class = "container";
+      element.innerHTML = `<a href=${link}> ${label} </a>`
+      document.body.append(element);
+    }
+  </script>
 
-      <span class="container">
-        <a href="coiling/index.html"> coiling </a>
-      </span>
-
-      <span class="container">
-        <a href="clipping/index.html"> clipping </a>
-      </span>
-
-      <span class="container">
-        <a href="dissection/index.html"> dissection </a>
-      </span>
-
-      <span class="container">
-        <a href="06_snellen/index.html">  </a>
-      </span>
-
-      <span class="container">
-        <a href="http://spinecarehk.com/index_files/cervical_instability.htm">  </a>
-      </span>
-
-      <span class="container">
-        <a href="01_tumour/index.html">  </a>
-      </span>
-
-      <span class="container">
-        <a href="2/index.html"> other 3 </a>
-      </span>
-
-      <span class="container">
-        <a href="2/index.html"> other 4 </a>
-      </span>
-
-      <span class="container">
-        <a href="2/index.html"> other 5 </a>
-      </span>
-
-
-
-
-
-
-  </body>
 </html>
