@@ -19,14 +19,15 @@
       }
     </style>
     <script>
-      const list = {
-        vascular  : "vascular/index.html",
-        tumour    : "tumour/index.html",
-        spine     : "spine/index.html",
-        others    : "others/index.html"
-      }
+      const list = [
+        ["vascular"  , "vascular/index.html"],
+        ["tumour", "tumour/index.html"],
+        ["spine", "spine/index.html"],
+        ["others", "others/index.html"]
 
-      for {label, link} of list {
+    ]
+
+      for ([label, link] of list) {
         const element = document.createElement("span");
         const inner = document.createElement("a");
         element.class = "container";
