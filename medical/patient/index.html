@@ -18,23 +18,7 @@
         padding: 3px;
       }
     </style>
-    <script>
-      const list = [
-        ["vascular"  , "vascular/index.html"],
-        ["tumour", "tumour/index.html"],
-        ["spine", "spine/index.html"],
-        ["others", "others/index.html"]
 
-    ]
-
-      for (const [label, link] of list) {
-        const element = document.createElement("span");
-        element.class = "container";
-        element.innerHTML = `<a href=${link}> ${label} </a>`
-        document.body.append(element);
-      }
-
-    </script>
   </head>
 
   <body>
@@ -84,4 +68,21 @@
       <a href="2/index.html"> other 5 </a>
     </span> -->
   </body>
+  <script>
+    const list = [
+      ["vascular"  , "vascular/index.html"],
+      ["tumour", "tumour/index.html"],
+      ["spine", "spine/index.html"],
+      ["others", "others/index.html"]
+
+  ]
+
+    for (const [label, link] of list) {
+      const element = document.createElement("span");
+      element.class = "container";
+      element.innerHTML = `<a href=${link}> ${label} </a>`
+      document.body.append(element);
+    }
+
+  </script>
 </html>
