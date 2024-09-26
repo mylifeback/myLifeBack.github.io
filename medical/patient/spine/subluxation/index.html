@@ -38,14 +38,14 @@
                   <script>
                     const list = [
                       ["C1/C2 subluxation"  , "http://spinecarehk.com/index_files/cervical_instability.htm"],
-                      ["posterior reduction for C1/C2 subluxation", "0https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3745685/"]
+                      ["posterior reduction for C1/C2 subluxation", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3745685/"]
         
                   ]
         
                     for (const [label, link] of list) {
                       const element = document.createElement("span");
                       element.class = "container";
-                      element.innerHTML = `<a href=${link}> ${label} </a>`
+                      element.innerHTML = `<a href=${link}> ${label}</a>`
                       document.body.append(element);
                     }
         
