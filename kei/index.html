@@ -135,7 +135,7 @@
           color: 0xff00ff,
         });
         const twoloader = new VTKLoader();
-        twoloader.load("./file/lesion.vtk", function (geometry) {
+        twoloader.load("./file/2.vtk", function (geometry) {
           geometry.computeVertexNormals();
           const mesh = new THREE.Mesh(geometry, twomaterial);
           scene.add(mesh);
