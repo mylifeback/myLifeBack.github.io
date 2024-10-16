@@ -161,6 +161,39 @@
         });
 
 
+        /* 3 --------- */
+        const threematerial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0xff00ff,
+        });
+        const threeloader = new VTKLoader();
+        twoloader.load("./file/3.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, threematerial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: 0.5,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Three")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;d
+              animate();
+            });
+          gui
+            .add(visibilityControl, "opacity", 0, 1, 0.01)
+            .name("Three Opacity")
+            .onChange(function () {
+              threematerial.opacity = visibilityControl.opacity;
+              animate();
+            });
+          animate()
+        });
+
+
         /* lesion --------- */
         const lesionmaterial = new THREE.MeshLambertMaterial({
           wireframe: false,
