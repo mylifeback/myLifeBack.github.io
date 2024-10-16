@@ -93,6 +93,60 @@
         //  GUI
         const gui = new GUI();
 
+
+        /* 1 --------- */
+        const onematerial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0x0000ff,
+        });
+        const oneloader = new VTKLoader();
+        oneloader.load("./file/1.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, onematerial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: 0.5,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("One")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              animate();
+            });
+          animate()
+        });
+
+
+
+        /* 2 --------- */
+        const twomaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0xff00ff,
+        });
+        const twoloader = new VTKLoader();
+        twoloader.load("./file/lesion.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, twomaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: 0.5,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Two")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              animate();
+            });
+          animate()
+        });
+
+
         /* lesion --------- */
         const lesionmaterial = new THREE.MeshLambertMaterial({
           wireframe: false,
