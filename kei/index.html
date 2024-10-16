@@ -57,18 +57,18 @@
       let stats, camera, controls, scene, renderer;
 
 
-      // Register the Service Worker
-      registerSW();
+      // // Register the Service Worker
+      // registerSW();
 
-      async function registerSW() {
-        if ("serviceWorker" in navigator) {
-          try {
-            await navigator.serviceWorker.register("./serviceworker.js");
-          } catch (e) {
-            console.log("SW registration failed");
-          }
-        }
-      }
+      // async function registerSW() {
+      //   if ("serviceWorker" in navigator) {
+      //     try {
+      //       await navigator.serviceWorker.register("./serviceworker.js");
+      //     } catch (e) {
+      //       console.log("SW registration failed");
+      //     }
+      //   }
+      // }
 
 
       init();
