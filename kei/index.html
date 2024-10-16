@@ -116,6 +116,13 @@
               mesh.visible = visibilityControl.visible;
               animate();
             });
+          gui
+            .add(visibilityControl, "opacity", 0, 1, 0.01)
+            .name("One Opacity")
+            .onChange(function () {
+              onematerial.opacity = visibilityControl.opacity;
+              animate();
+            });
           animate()
         });
 
@@ -140,7 +147,14 @@
             .add(visibilityControl, "visible")
             .name("Two")
             .onChange(function () {
-              mesh.visible = visibilityControl.visible;
+              mesh.visible = visibilityControl.visible;d
+              animate();
+            });
+          gui
+            .add(visibilityControl, "opacity", 0, 1, 0.01)
+            .name("Two Opacity")
+            .onChange(function () {
+              twomaterial.opacity = visibilityControl.opacity;
               animate();
             });
           animate()
