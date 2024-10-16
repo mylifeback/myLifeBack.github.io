@@ -194,6 +194,39 @@
         });
 
 
+        /* 4 --------- */
+        const fourmaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          color: 0xff00ff,
+        });
+        const fourloader = new VTKLoader();
+        twoloader.load("./file/4.vtk", function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, fourmaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: 0.5,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name("Four")
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;d
+              animate();
+            });
+          gui
+            .add(visibilityControl, "opacity", 0, 1, 0.01)
+            .name("Four Opacity")
+            .onChange(function () {
+              fourmaterial.opacity = visibilityControl.opacity;
+              animate();
+            });
+          animate()
+        });
+
+
         /* lesion --------- */
         const lesionmaterial = new THREE.MeshLambertMaterial({
           wireframe: false,
