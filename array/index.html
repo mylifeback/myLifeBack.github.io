@@ -96,198 +96,85 @@
         const gui = new GUI();
 
 
-        /* 1 --------- */
-        const onematerial = new THREE.MeshLambertMaterial({
+        models.foreach (model) {
+          const modelName = model[0];
+          const modelColor = model[1];
+          const modelOpacity = model[2];
+          const modelFile = "./file/" + model[3];
+
+          const meshMaterial = new THREE.MeshLambertMaterial({
           wireframe: false,
           side: THREE.DoubleSide,
-          color: 0x0000ff,
+          color: modelColor,
         });
-        const oneloader = new VTKLoader();
-        oneloader.load("./file/1.vtk", function (geometry) {
+        const meshLoader = new VTKLoader();
+        meshLoader.load(modelFile, function (geometry) {
           geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, onematerial);
+          const mesh = new THREE.Mesh(geometry, meshMaterial);
           scene.add(mesh);
           const visibilityControl = {
             visible: true,
-            opacity: 0.5,
+            opacity: modelOpacity,
           };
           gui
             .add(visibilityControl, "visible")
-            .name("One")
+            .name(modelName)
             .onChange(function () {
               mesh.visible = visibilityControl.visible;
               animate();
             });
           gui
             .add(visibilityControl, "opacity", 0, 1, 0.01)
-            .name("One Opacity")
+            .name(modelName+ "Opacity")
             .onChange(function () {
-              onematerial.opacity = visibilityControl.opacity;
+              meshMaterial.opacity = visibilityControl.opacity;
               animate();
             });
           animate()
         });
+        }
 
 
 
-        /* 2 --------- */
-        const twomaterial = new THREE.MeshLambertMaterial({
-          wireframe: false,
-          side: THREE.DoubleSide,
-          color: 0xff00ff,
-        });
-        const twoloader = new VTKLoader();
-        twoloader.load("./file/2.vtk", function (geometry) {
-          geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, twomaterial);
-          scene.add(mesh);
-          const visibilityControl = {
-            visible: true,
-            opacity: 0.5,
-          };
-          gui
-            .add(visibilityControl, "visible")
-            .name("Two")
-            .onChange(function () {
-              mesh.visible = visibilityControl.visible;d
-              animate();
-            });
-          gui
-            .add(visibilityControl, "opacity", 0, 1, 0.01)
-            .name("Two Opacity")
-            .onChange(function () {
-              twomaterial.opacity = visibilityControl.opacity;
-              animate();
-            });
-          animate()
-        });
 
 
-        /* 3 --------- */
-        const threematerial = new THREE.MeshLambertMaterial({
-          wireframe: false,
-          side: THREE.DoubleSide,
-          color: 0xff00ff,
-        });
-        const threeloader = new VTKLoader();
-        twoloader.load("./file/3.vtk", function (geometry) {
-          geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, threematerial);
-          scene.add(mesh);
-          const visibilityControl = {
-            visible: true,
-            opacity: 0.5,
-          };
-          gui
-            .add(visibilityControl, "visible")
-            .name("Three")
-            .onChange(function () {
-              mesh.visible = visibilityControl.visible;d
-              animate();
-            });
-          gui
-            .add(visibilityControl, "opacity", 0, 1, 0.01)
-            .name("Three Opacity")
-            .onChange(function () {
-              threematerial.opacity = visibilityControl.opacity;
-              animate();
-            });
-          animate()
-        });
 
 
-        /* 4 --------- */
-        const fourmaterial = new THREE.MeshLambertMaterial({
-          wireframe: false,
-          side: THREE.DoubleSide,
-          color: 0xff00ff,
-        });
-        const fourloader = new VTKLoader();
-        twoloader.load("./file/4.vtk", function (geometry) {
-          geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, fourmaterial);
-          scene.add(mesh);
-          const visibilityControl = {
-            visible: true,
-            opacity: 0.5,
-          };
-          gui
-            .add(visibilityControl, "visible")
-            .name("Four")
-            .onChange(function () {
-              mesh.visible = visibilityControl.visible;d
-              animate();
-            });
-          gui
-            .add(visibilityControl, "opacity", 0, 1, 0.01)
-            .name("Four Opacity")
-            .onChange(function () {
-              fourmaterial.opacity = visibilityControl.opacity;
-              animate();
-            });
-          animate()
-        });
 
 
-        /* lesion --------- */
-        const lesionmaterial = new THREE.MeshLambertMaterial({
-          wireframe: false,
-          side: THREE.DoubleSide,
-          color: 0xff0000,
-        });
-        const lesionloader = new VTKLoader();
-        lesionloader.load("./file/lesion.vtk", function (geometry) {
-          geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, lesionmaterial);
-          scene.add(mesh);
-          const visibilityControl = {
-            visible: true,
-            opacity: 0.5,
-          };
-          gui
-            .add(visibilityControl, "visible")
-            .name("Lesion")
-            .onChange(function () {
-              mesh.visible = visibilityControl.visible;
-              animate();
-            });
-          animate()
-        });
-
-
-        /* skin ----------- */
-        const skinmaterial = new THREE.MeshLambertMaterial({
-          wireframe: false,
-          side: THREE.DoubleSide,
-          color: 0x00ff00,
-          transparent: true,
-          opacity: 0.2
-        });
-        const skinloader = new VTKLoader(); // https://crawford1903.mynetgear.com:1234/cavernous/file/skin.vtk
-        skinloader.load("./file/skin.vtk", function (geometry) {
-          geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, skinmaterial);
-          scene.add(mesh);
-          const visibilityControl = {
-            visible: true,
-            opacity: 0.5,
-          };
-          gui
-            .add(visibilityControl, "visible")
-            .name("Skin")
-            .onChange(function () {
-              mesh.visible = visibilityControl.visible;
-              animate();
-            });
-          gui
-            .add(visibilityControl, "opacity", 0, 1, 0.01)
-            .name("Skin Opacity")
-            .onChange(function () {
-              skinmaterial.opacity = visibilityControl.opacity;
-              animate();
-            });
-          animate()
-        });
+        // /* skin ----------- */
+        // const skinmaterial = new THREE.MeshLambertMaterial({
+        //   wireframe: false,
+        //   side: THREE.DoubleSide,
+        //   color: 0x00ff00,
+        //   transparent: true,
+        //   opacity: 0.2
+        // });
+        // const skinloader = new VTKLoader(); // https://crawford1903.mynetgear.com:1234/cavernous/file/skin.vtk
+        // skinloader.load("./file/skin.vtk", function (geometry) {
+        //   geometry.computeVertexNormals();
+        //   const mesh = new THREE.Mesh(geometry, skinmaterial);
+        //   scene.add(mesh);
+        //   const visibilityControl = {
+        //     visible: true,
+        //     opacity: 0.5,
+        //   };
+        //   gui
+        //     .add(visibilityControl, "visible")
+        //     .name("Skin")
+        //     .onChange(function () {
+        //       mesh.visible = visibilityControl.visible;
+        //       animate();
+        //     });
+        //   gui
+        //     .add(visibilityControl, "opacity", 0, 1, 0.01)
+        //     .name("Skin Opacity")
+        //     .onChange(function () {
+        //       skinmaterial.opacity = visibilityControl.opacity;
+        //       animate();
+        //     });
+        //   animate()
+        // });
 
         // renderer
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
