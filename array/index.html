@@ -158,7 +158,7 @@
             });
           gui
             .add(visibilityControl, "opacity", 0, 1, 0.01)
-            .name(modelName+ "Opacity")
+            .name(modelName + "Opacity")
             .onChange(function () {
               meshMaterial.opacity = visibilityControl.opacity;
               animate();
