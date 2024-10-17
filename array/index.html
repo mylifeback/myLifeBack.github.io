@@ -111,7 +111,7 @@
         controls.addEventListener('change', animate);
         window.addEventListener("resize", onWindowResize);
 
-        models.forEach(show);
+        models.forEach(show.bind(this));
       }
 
       function onWindowResize() {
@@ -149,14 +149,14 @@
             visible: true,
             opacity: modelOpacity,
           };
-          gui
+          this.gui
             .add(visibilityControl, "visible")
             .name(modelName)
             .onChange(function () {
               mesh.visible = visibilityControl.visible;
               animate();
             });
-          gui
+          this.gui
             .add(visibilityControl, "opacity", 0, 1, 0.01)
             .name(modelName+ "Opacity")
             .onChange(function () {
