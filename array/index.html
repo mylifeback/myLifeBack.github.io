@@ -55,7 +55,7 @@
       import { TrackballControls } from "./src/TrackballControls.js";
       import { VTKLoader } from "./src/VTKLoader.js";
       import models from "./model.js";
-      let stats, camera, controls, scene, renderer;
+      let stats, gui, camera, controls, scene, renderer;
 
 
 
@@ -86,7 +86,7 @@
         scene = new THREE.Scene();
         scene.add(camera);
         //  GUI
-        const gui = new GUI();
+        gui = new GUI();
         // light
         const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
         scene.add(hemiLight);
@@ -111,7 +111,7 @@
         controls.addEventListener('change', animate);
         window.addEventListener("resize", onWindowResize);
 
-        models.forEach(show.bind(this));
+        models.forEach(show);
       }
 
       function onWindowResize() {
@@ -149,14 +149,14 @@
             visible: true,
             opacity: modelOpacity,
           };
-          this.gui
+          gui
             .add(visibilityControl, "visible")
             .name(modelName)
             .onChange(function () {
               mesh.visible = visibilityControl.visible;
               animate();
             });
-          this.gui
+          gui
             .add(visibilityControl, "opacity", 0, 1, 0.01)
             .name(modelName+ "Opacity")
             .onChange(function () {
