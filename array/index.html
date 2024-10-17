@@ -8,7 +8,7 @@
     />
     <link type="text/css" rel="stylesheet" href="./src/main.css" />
     <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
-    <title>show</title>
+    <title id="title">title</title>
 
     
 
@@ -30,7 +30,7 @@
   <body>
     <div id="info">
       <!-- <a href="https://threejs.org" target="_blank" rel="noopener">in progress</a> -->
-      <div>patient</div>
+      <div id="topic">topic</div>
 
     </div>
 
@@ -54,10 +54,12 @@
       import { OrbitControls } from "./src/OrbitControls.js";
       import { TrackballControls } from "./src/TrackballControls.js";
       import { VTKLoader } from "./src/VTKLoader.js";
-      import models from "./model.js";
+      import models from "./models.js";
+      import names from "./names.js";
       let stats, gui, camera, controls, scene, renderer;
 
-
+      document.getElementById("title").textContent = names.title;
+      document.getElementById("topic").textContent = names.topic;
 
       // // Register the Service Worker
       // registerSW();
