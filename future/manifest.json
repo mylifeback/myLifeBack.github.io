@@ -5,7 +5,7 @@
   "display":"fullscreen",
   "background_color":"#5900b3",
   "theme_color":"black",
-  "scope": "/future/",
+  "scope": "/",
   "description":"show & explain",
   "icons":[
   {
