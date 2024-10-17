@@ -140,7 +140,7 @@
 
 
 
-        models.forEach(show);
+
 
 
 
@@ -161,6 +161,8 @@
 
         controls.addEventListener('change', animate);
         window.addEventListener("resize", onWindowResize);
+
+        models.forEach(show);
       }
 
       function onWindowResize() {
