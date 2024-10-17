@@ -160,6 +160,7 @@
             .add(visibilityControl, "opacity", 0, 1, 0.01)
             .name(modelName + "Opacity")
             .onChange(function () {
+              debugger
               meshMaterial.opacity = visibilityControl.opacity;
               animate();
             });
