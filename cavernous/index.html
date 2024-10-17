@@ -8,7 +8,7 @@
     />
     <link type="text/css" rel="stylesheet" href="./src/main.css" />
     <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
-    <title>show</title>
+    <title id="title">title</title>
 
     
 
@@ -30,7 +30,7 @@
   <body>
     <div id="info">
       <!-- <a href="https://threejs.org" target="_blank" rel="noopener">in progress</a> -->
-      <div>patient</div>
+      <div id="topic">topic</div>
 
     </div>
 
@@ -54,23 +54,27 @@
       import { OrbitControls } from "./src/OrbitControls.js";
       import { TrackballControls } from "./src/TrackballControls.js";
       import { VTKLoader } from "./src/VTKLoader.js";
-      let stats, camera, controls, scene, renderer;
+      import models from "./models.js";
+      import names from "./names.js";
+      let stats, gui, camera, controls, scene, renderer;
 
+      document.getElementById("title").textContent = names.title;
+      document.getElementById("topic").textContent = names.topic;
 
-      // Register the Service Worker
-      registerSW();
+      // // Register the Service Worker
+      // registerSW();
 
-      async function registerSW() {
-        if ("serviceWorker" in navigator) {
-          try {
-            await navigator.serviceWorker.register("./serviceworker.js");
-          } catch (e) {
-            console.log("SW registration failed");
-          }
-        }
-      }
+      // async function registerSW() {
+      //   if ("serviceWorker" in navigator) {
+      //     try {
+      //       await navigator.serviceWorker.register("./serviceworker.js");
+      //     } catch (e) {
+      //       console.log("SW registration failed");
+      //     }
+      //   }
+      // }
 
-
+      console.log(models);
       init();
 
       function init() {
@@ -83,82 +87,20 @@
         camera.position.z = 300;
         scene = new THREE.Scene();
         scene.add(camera);
-
+        //  GUI
+        gui = new GUI();
         // light
         const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
         scene.add(hemiLight);
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
         dirLight.position.set(200, 200, 200);
         scene.add(dirLight);
-        //  GUI
-        const gui = new GUI();
-
-        /* lesion --------- */
-        const lesionmaterial = new THREE.MeshLambertMaterial({
-          wireframe: false,
-          side: THREE.DoubleSide,
-          color: 0xff0000,
-        });
-        const lesionloader = new VTKLoader();
-        lesionloader.load("./file/lesion.vtk", function (geometry) {
-          geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, lesionmaterial);
-          scene.add(mesh);
-          const visibilityControl = {
-            visible: true,
-            opacity: 0.5,
-          };
-          gui
-            .add(visibilityControl, "visible")
-            .name("Lesion")
-            .onChange(function () {
-              mesh.visible = visibilityControl.visible;
-              animate();
-            });
-          animate()
-        });
-
-
-        /* skin ----------- */
-        const skinmaterial = new THREE.MeshLambertMaterial({
-          wireframe: false,
-          side: THREE.DoubleSide,
-          color: 0x00ff00,
-          transparent: true,
-          opacity: 0.2
-        });
-        const skinloader = new VTKLoader(); // https://crawford1903.mynetgear.com:1234/cavernous/file/skin.vtk
-        skinloader.load("./file/skin.vtk", function (geometry) {
-          geometry.computeVertexNormals();
-          const mesh = new THREE.Mesh(geometry, skinmaterial);
-          scene.add(mesh);
-          const visibilityControl = {
-            visible: true,
-            opacity: 0.5,
-          };
-          gui
-            .add(visibilityControl, "visible")
-            .name("Skin")
-            .onChange(function () {
-              mesh.visible = visibilityControl.visible;
-              animate();
-            });
-          gui
-            .add(visibilityControl, "opacity", 0, 1, 0.01)
-            .name("Skin Opacity")
-            .onChange(function () {
-              skinmaterial.opacity = visibilityControl.opacity;
-              animate();
-            });
-          animate()
-        });
-
         // renderer
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
-  
+        // trackBall Control
         controls = new TrackballControls(camera, renderer.domElement);
         controls.minDistance = 100;
         controls.maxDistance = 500;
@@ -170,6 +112,8 @@
 
         controls.addEventListener('change', animate);
         window.addEventListener("resize", onWindowResize);
+
+        models.forEach(show);
       }
 
       function onWindowResize() {
@@ -185,6 +129,46 @@
         renderer.render(scene, camera);
       }
 
+      function show (model) {
+          console.log (model);
+          const modelName = model[0];
+          const modelColor = model[1];
+          const modelOpacity = model[2];
+          model[3] ??= model[0];
+          const modelFile = "./file/" + model[3] + ".vtk";
+
+          const meshMaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          transparent: true,
+          color: modelColor,
+        });
+        const meshLoader = new VTKLoader();
+        meshLoader.load(modelFile, function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, meshMaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: modelOpacity,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name(modelName)
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              animate();
+            });
+          gui
+            .add(visibilityControl, "opacity", 0, 1, 0.01)
+            .name(modelName + "Opacity")
+            .onChange(function () {
+              meshMaterial.opacity = visibilityControl.opacity;
+              animate();
+            });
+          animate()
+        });
+      }
 
     </script>
   </body>
