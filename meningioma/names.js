@@ -1,2 +1,3 @@
-const names = {title: "aneurysm", topic: "cavernous segment aneurysm"};
+const names = {
+  title: "meningioma", topic: "large meningioma"};
 export default names;
