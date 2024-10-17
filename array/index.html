@@ -129,15 +129,15 @@
         camera.position.z = 300;
         scene = new THREE.Scene();
         scene.add(camera);
-
+        //  GUI
+        const gui = new GUI();
         // light
         const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
         scene.add(hemiLight);
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
         dirLight.position.set(200, 200, 200);
         scene.add(dirLight);
-        //  GUI
-        const gui = new GUI();
+
 
 
         models.forEach(show);
