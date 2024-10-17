@@ -96,7 +96,7 @@
         const gui = new GUI();
 
 
-        models.foreach (model) {
+        function show (model) {
           const modelName = model[0];
           const modelColor = model[1];
           const modelOpacity = model[2];
@@ -134,6 +134,7 @@
         });
         }
 
+        models.foreach(show(model));
 
 
 
