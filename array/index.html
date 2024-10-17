@@ -85,7 +85,7 @@
           const modelColor = model[1];
           const modelOpacity = model[2];
           model[3] ??= model[0];
-          const modelFile = "./file/" + model[3];
+          const modelFile = "./file/" + model[3] + ".vtk";
 
           const meshMaterial = new THREE.MeshLambertMaterial({
           wireframe: false,
