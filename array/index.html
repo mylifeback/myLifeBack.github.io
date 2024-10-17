@@ -72,10 +72,10 @@
       //   }
       // }
 
-
-      init();
       console.log(models);
-      models.forEach(show);
+      init();
+
+
 
 
 
@@ -138,6 +138,12 @@
         scene.add(dirLight);
         //  GUI
         const gui = new GUI();
+
+
+        models.forEach(show);
+
+
+
         // renderer
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);
