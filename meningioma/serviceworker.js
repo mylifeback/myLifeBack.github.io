@@ -16,9 +16,11 @@ const assets = [
   "./src/fflate.module.js",
   "./file/lesion.vtk",
   "./file/skin.vtk",
+  "./file/1.vtk",
+  "./file/2.vtk",
   "./file/3.vtk",
   "./file/4.vtk",
-  "./file/5.vtk",  
+
 ];
 
 self.addEventListener("install", function(e) {
