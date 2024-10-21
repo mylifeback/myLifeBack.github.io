@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <link type="text/css" rel="stylesheet" href="./src/main.css" />
+    <link rel="icon" type="image/x-icon" href="./src/favicon.ico" />
+    <title id="title">title</title>
+
+    
+
+    <!-- Meta Tags required for
+        Progressive Web App -->
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
+    <meta name="theme-color" content="black" />
+    <!-- Manifest File link -->
+   
+    <link rel="manifest" href="./manifest.json" />
+   
+    <!-- error with permission policy header: origin trial controlled feature not enabled: 'interest-cohort' -->
+    <meta
+      http-equiv="Permissions-Policy"
+      content="interest-cohort=(), user-id=()"
+    />
+  </head>
+
+  <body>
+    <div id="info">
+      <!-- <a href="https://threejs.org" target="_blank" rel="noopener">in progress</a> -->
+      <div id="topic">topic</div>
+
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./src/three.js",
+          "three/addons/": "./src/",
+          "three/addons/jsm/libs/": "./src/",
+          "./libs/": "./src/"
+        }
+      }
+    </script>
+
+
+    <script type="module">
+      import * as THREE from "./src/three.js";
+      // import Stats from "three/addons/stats.module.js";
+      // import { GUI } from "three/addons/lil-gui.module.min.js";
+      import { GUI } from "./src/lil-gui.module.min.js";
+      import { OrbitControls } from "./src/OrbitControls.js";
+      import { TrackballControls } from "./src/TrackballControls.js";
+      import { VTKLoader } from "./src/VTKLoader.js";
+      import models from "./models.js";
+      import names from "./names.js";
+      let stats, gui, camera, controls, scene, renderer;
+
+      document.getElementById("title").textContent = names.title;
+      document.getElementById("topic").textContent = names.topic;
+
+      // Register the Service Worker
+      registerSW();
+
+      async function registerSW() {
+        if ("serviceWorker" in navigator) {
+          try {
+            await navigator.serviceWorker.register("./serviceworker.js");
+          } catch (e) {
+            console.log("SW registration failed");
+          }
+        }
+      }
+
+      console.log(models);
+      init();
+
+      function init() {
+        camera = new THREE.PerspectiveCamera(
+          60,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        camera.position.z = 300;
+        scene = new THREE.Scene();
+        scene.add(camera);
+        //  GUI
+        gui = new GUI();
+        // light
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
+        scene.add(hemiLight);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(200, 200, 200);
+        scene.add(dirLight);
+        // renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        // trackBall Control
+        controls = new TrackballControls(camera, renderer.domElement);
+        controls.minDistance = 100;
+        controls.maxDistance = 500;
+        controls.rotateSpeed = 2.0;
+        controls.zoomSpeed = 2;
+        controls.panSpeed = 0.8;
+        // stats = new Stats();
+        // document.body.appendChild(stats.dom);
+
+        controls.addEventListener('change', animate);
+        window.addEventListener("resize", onWindowResize);
+
+        models.forEach(show);
+      }
+
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        controls.handleResize();
+        animate();
+      }
+
+      function animate() {
+        // stats.update();
+        renderer.render(scene, camera);
+      }
+
+      function show (model) {
+          const modelName = model[0];
+          const modelColor = model[1];
+          const modelOpacity = model[2];
+          model[3] ??= model[0];
+          const modelFile = "./file/" + model[3] + ".vtk";
+
+          const meshMaterial = new THREE.MeshLambertMaterial({
+          wireframe: false,
+          side: THREE.DoubleSide,
+          transparent: true,
+          color: modelColor,
+        });
+        const meshLoader = new VTKLoader();
+        meshLoader.load(modelFile, function (geometry) {
+          geometry.computeVertexNormals();
+          const mesh = new THREE.Mesh(geometry, meshMaterial);
+          scene.add(mesh);
+          const visibilityControl = {
+            visible: true,
+            opacity: modelOpacity,
+          };
+          gui
+            .add(visibilityControl, "visible")
+            .name(modelName)
+            .onChange(function () {
+              mesh.visible = visibilityControl.visible;
+              animate();
+            });
+          gui
+            .add(visibilityControl, "opacity", 0, 1, 0.01)
+            .name(modelName + "Opacity")
+            .onChange(function () {
+              meshMaterial.opacity = visibilityControl.opacity;
+              animate();
+            });
+          animate()
+        });
+      }
+
+    </script>
+  </body>
+</html>
