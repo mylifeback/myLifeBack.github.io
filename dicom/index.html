@@ -132,11 +132,11 @@
 					cube.visible = false;
 					const box = new THREE.BoxHelper( cube );
 					scene.add( box );
-					// box.applyMatrix4( volume.matrix );
+					box.applyMatrix4( volume.matrix );
 					scene.add( cube );
 
 					//z plane
-					const sliceZ = volume.extractSlice( 'z+80', Math.floor( volume.RASDimensions[ 2 ] / 4 ) );
+					const sliceZ = volume.extractSlice( 'z', Math.floor( volume.RASDimensions[ 2 ] / 4 ) );
 					scene.add( sliceZ.mesh );
 
 					//y plane
