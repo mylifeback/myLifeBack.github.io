@@ -135,11 +135,11 @@
 					scene.add( cube );
 
 					//z plane
-					const sliceZ = volume.extractSlice( 'z-0.4', Math.floor( volume.RASDimensions[ 2 ] / 4 ) );
+					const sliceZ = volume.extractSlice( 'z-0.8', Math.floor( volume.RASDimensions[ 2 ] / 4 ) );
 					scene.add( sliceZ.mesh );
 
 					//y plane
-					const sliceY = volume.extractSlice( 'y-0.4', Math.floor( volume.RASDimensions[ 1 ] / 2 ) );
+					const sliceY = volume.extractSlice( 'y', Math.floor( volume.RASDimensions[ 1 ] / 2 ) );
 					scene.add( sliceY.mesh );
 
 					//x plane
