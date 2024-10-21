@@ -1,6 +1,7 @@
 var staticCacheName = "skull";
 
 const assets = [
+  "./pwa.html",
   "./index.html",
   "./src/favicon.ico",
   "./src/main.css",
@@ -15,7 +16,8 @@ const assets = [
   "./src/icon-192x192.png",
   "./file/lesion.vtk",
   "./file/skin.vtk",
-  "./src/fflate.module.js"
+  "./src/fflate.module.js",
+  "./src/NRRDLoader.js"
 ];
 
 self.addEventListener("install", function(e) {
