@@ -1,7 +1,7 @@
 {
   "name":"show patient",
   "short_name":"show",
-  "start_url":"./index.html",
+  "start_url":"./pwa.html",
   "display":"fullscreen",
   "background_color":"#5900b3",
   "theme_color":"black",
