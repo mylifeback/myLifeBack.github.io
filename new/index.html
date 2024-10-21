@@ -14,25 +14,28 @@
 		</div>
 		<div id="inset"></div>
 
-		<script type="importmap">
-			{
-				"imports": {
-					"three": "../build/three.module.js",
-					"three/addons/": "./jsm/"
-				}
-			}
-		</script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./src/three.js",
+          "three/addons/": "./src/",
+          "three/addons/jsm/libs/": "./src/",
+          "./libs/": "./src/",
+          "./misc/": "./src/"
+        }
+      }
+    </script>
 
 		<script type="module">
 
 			import * as THREE from 'three';
 
-			import Stats from 'three/addons/libs/stats.module.js';
+			import Stats from './src/stats.module.js';
 
-			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
-			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-			import { NRRDLoader } from 'three/addons/loaders/NRRDLoader.js';
-			import { VTKLoader } from 'three/addons/loaders/VTKLoader.js';
+			import { GUI } from './src/lil-gui.module.min.js';
+			import { TrackballControls } from './src/TrackballControls.js';
+			import { NRRDLoader } from './src/NRRDLoader.js';
+			import { VTKLoader } from './src/VTKLoader.js';
 
 			let stats,
 				camera,
@@ -61,7 +64,7 @@
 				scene.add( dirLight );
 
 				const loader = new NRRDLoader();
-				loader.load( 'models/nrrd/I.nrrd', function ( volume ) {
+				loader.load( './file/small.nrrd', function ( volume ) {
 
 					//box helper to see the extend of the volume
 					const geometry = new THREE.BoxGeometry( volume.xLength, volume.yLength, volume.zLength );
@@ -124,26 +127,26 @@
 
 				} );
 
-				const vtkmaterial = new THREE.MeshLambertMaterial( { wireframe: false, side: THREE.DoubleSide, color: 0xff0000 } );
+				// const vtkmaterial = new THREE.MeshLambertMaterial( { wireframe: false, side: THREE.DoubleSide, color: 0xff0000 } );
 
-				const vtkloader = new VTKLoader();
-				vtkloader.load( 'models/vtk/liver.vtk', function ( geometry ) {
+				// const vtkloader = new VTKLoader();
+				// vtkloader.load( 'models/vtk/liver.vtk', function ( geometry ) {
 
-					geometry.computeVertexNormals();
+				// 	geometry.computeVertexNormals();
 
-					const mesh = new THREE.Mesh( geometry, vtkmaterial );
-					scene.add( mesh );
-					const visibilityControl = {
-						visible: true
-					};
-					gui.add( visibilityControl, 'visible' ).name( 'Model Visible' ).onChange( function () {
+				// 	const mesh = new THREE.Mesh( geometry, vtkmaterial );
+				// 	scene.add( mesh );
+				// 	const visibilityControl = {
+				// 		visible: true
+				// 	};
+				// 	gui.add( visibilityControl, 'visible' ).name( 'Model Visible' ).onChange( function () {
 
-						mesh.visible = visibilityControl.visible;
-						renderer.render( scene, camera );
+				// 		mesh.visible = visibilityControl.visible;
+				// 		renderer.render( scene, camera );
 
-					} );
+				// 	} );
 
-				} );
+				// } );
 				// renderer
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
