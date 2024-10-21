@@ -148,37 +148,44 @@
 					gui.add( sliceX, 'index', 0, volume.RASDimensions[ 0 ], 1 ).name( 'indexX' ).onChange( function () {
 
 						sliceX.repaint.call( sliceX );
+            animate();
 
 					} );
 					gui.add( sliceY, 'index', 0, volume.RASDimensions[ 1 ], 1 ).name( 'indexY' ).onChange( function () {
 
 						sliceY.repaint.call( sliceY );
+            animate();
 
 					} );
 					gui.add( sliceZ, 'index', 0, volume.RASDimensions[ 2 ], 1 ).name( 'indexZ' ).onChange( function () {
 
 						sliceZ.repaint.call( sliceZ );
+            animate();
 
 					} );
 
 					gui.add( volume, 'lowerThreshold', volume.min, volume.max, 1 ).name( 'Lower Threshold' ).onChange( function () {
 
 						volume.repaintAllSlices();
+            animate();
 
 					} );
 					gui.add( volume, 'upperThreshold', volume.min, volume.max, 1 ).name( 'Upper Threshold' ).onChange( function () {
 
 						volume.repaintAllSlices();
+            animate();
 
 					} );
 					gui.add( volume, 'windowLow', volume.min, volume.max, 1 ).name( 'Window Low' ).onChange( function () {
 
 						volume.repaintAllSlices();
+            animate();
 
 					} );
 					gui.add( volume, 'windowHigh', volume.min, volume.max, 1 ).name( 'Window High' ).onChange( function () {
 
 						volume.repaintAllSlices();
+            animate();
 
 					} );
 
@@ -197,7 +204,7 @@
 
       function animate() {
         // stats.update();
-        controls.update();
+        // controls.update();
         renderer.render(scene, camera);
       }
 
