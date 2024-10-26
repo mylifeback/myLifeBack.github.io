@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <div id="q">
+    <!--Tab to edit-->
+  </div>
+<script>  
+  const searchParams = new URLSearchParams(window.location.search);
+  console.log(searchParams)
+  console.log(window.location.search)
+  const el = document.getElementById(q)
+  el.textContent = window.location.search
+</script>
+</body>
+
+</html>
