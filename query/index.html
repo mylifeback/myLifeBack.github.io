@@ -8,6 +8,7 @@
 </head>
 
 <body>
+  <div>ghh</div>
   <div id="q">
     <!--Tab to edit-->
   </div>
@@ -15,7 +16,7 @@
   const searchParams = new URLSearchParams(window.location.search);
   console.log(searchParams)
   console.log(window.location.search)
-  const el = document.getElementById(q)
+  const el = document.getElementById('q')
   el.textContent = searchParams[0]
 </script>
 </body>
