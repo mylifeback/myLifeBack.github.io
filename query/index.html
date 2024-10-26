@@ -8,17 +8,18 @@
 </head>
 
 <body>
-  <div>ghh</div>
+  <div>set query please</div>
   <div id="q">
     <!--Tab to edit-->
     here
   </div>
 <script>  
   const searchParams = new URLSearchParams(window.location.search);
+  const para = searchParams.get('abc');
   console.log(searchParams)
   console.log(window.location)
   const el = document.getElementById('q')
-  el.textContent = searchParams[0]
+  el.textContent = para
 </script>
 </body>
 
