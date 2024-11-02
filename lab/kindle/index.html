@@ -35,8 +35,15 @@
 <div> hello </div>
 <span id="id"> hello </span>
 <script>
+    var t = 0;
     var element = document.getElementById("id");
     element.textContent = "world";
+    setInterval(add, 1000);
+
+    function add (){
+        t = t + 1;
+        element.textContent = t;
+    }
 </script>    
 
 </body>
